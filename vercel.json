@@ -1,0 +1,12 @@
+{
+  "buildCommand": "npm --prefix ui run build",
+  "outputDirectory": "ui/dist",
+  "installCommand": "npm --prefix ui install",
+  "framework": null,
+  "rewrites": [
+    {
+      "source": "/api/s3-img/:path*",
+      "destination": "/api/s3-img-proxy"
+    }
+  ]
+}

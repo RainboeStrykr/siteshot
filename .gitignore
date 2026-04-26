@@ -1,2 +1,3 @@
 node_modules
 ui/.env
+ui/.env.local
