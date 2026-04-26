@@ -8,8 +8,8 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'ui/src'),
-      'ui': path.resolve(__dirname, 'ui'),
+      '@': path.resolve(__dirname, 'app/src'),
+      'ui': path.resolve(__dirname, 'app'),
       '@theme-toggles/react': path.resolve(__dirname, 'tests/mocks/theme-toggles-react.js'),
       '@theme-toggles/react/css/Classic.css': path.resolve(__dirname, 'tests/mocks/empty-style.js'),
     },

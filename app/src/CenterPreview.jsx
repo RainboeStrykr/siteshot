@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import ImageDisplay from './components/editor/ImageDisplay.jsx'
-import { useAppContext } from './AppContext'
+import { useAppContext } from './AppContext.jsx'
 
 const SCREENSHOTAPI_ENDPOINT = 'https://api.screenshotapi.com/take'
 const API_KEY = import.meta.env.VITE_SCREENSHOTAPI_KEY

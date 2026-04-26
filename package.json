@@ -5,8 +5,8 @@
   "private": true,
   "homepage": "./",
   "scripts": {
-    "dev": "npm --prefix ui run dev -- --port 3002 --strictPort",
-    "build": "npm --prefix ui run build",
+    "dev": "npm --prefix app run dev -- --port 3002 --strictPort",
+    "build": "npm --prefix app run build",
     "test": "node -e \"require('fs').mkdirSync('build-temp/vitest-tmp',{recursive:true})\" && cross-env TMPDIR=build-temp/vitest-tmp vitest run",
     "test:watch": "node -e \"require('fs').mkdirSync('build-temp/vitest-tmp',{recursive:true})\" && cross-env TMPDIR=build-temp/vitest-tmp vitest"
   },

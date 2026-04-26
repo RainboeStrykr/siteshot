@@ -22,8 +22,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-      // 'ui' alias points to the ui/ folder itself so imports like 'ui/icons.jsx'
-      // resolve to ui/src/assets/icons.jsx after the move.
+      // 'ui' alias points to the app/ folder itself so imports like 'ui/icons.jsx'
+      // resolve to app/src/assets/icons.jsx after the move.
       ui: path.resolve(__dirname, '.'),
       classnames: path.resolve(__dirname, './node_modules/classnames/index.js'),
       'fast-average-color': path.resolve(__dirname, './node_modules/fast-average-color/dist/index.esm.js'),

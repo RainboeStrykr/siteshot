@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { isProbablyHexColor, normalizeHexColorInput } from '../utils/color/colorInput.js'
-import { sanitizeCustomShadowState } from '../AppHelpers'
+import { sanitizeCustomShadowState } from '../AppHelpers.jsx'
 
 /**
  * Provides preset capture/apply helpers.

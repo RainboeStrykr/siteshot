@@ -3,7 +3,7 @@ import ImageDisplay from '../ImageDisplay.jsx';
 import ImageUploader from '../ImageUploader.js';
 import { SaveIcon, ClipboardIcon, FeedbackIcon } from '@/assets/icons.jsx';
 import { Check, PenLine, RotateCcw, SlidersHorizontal, TextCursorInput } from 'lucide-react';
-import { useI18n } from '../../context/I18nContext';
+import { useI18n } from '../../context/I18nContext.js';
 
 export default function MainCanvasArea({
   isTauri,
