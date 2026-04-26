@@ -1,0 +1,267 @@
+input[type="range"] {
+  appearance: none;
+  background: #2C2C2C;
+  height: 4px;
+  border-radius: 2px;
+}
+
+/* Remove focus outlines from interactive elements globally */
+button:focus, button:focus-visible,
+[role="button"]:focus, [role="button"]:focus-visible {
+  outline: none;
+}
+
+/* Unified footer / action button style — excludes sidebar, annotation toolbar icons,
+   export drawer pills, preset dropdown items, window controls, and icon-only buttons. */
+.siteshot-footer-btn {
+  border-radius: 6px !important;
+  height: 24px !important;
+  padding: 8px 16px !important;
+  font-size: 13px !important;
+  line-height: 1 !important;
+  box-sizing: border-box !important;
+  box-shadow: none !important;
+  outline: none !important;
+  border: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  white-space: nowrap !important;
+}
+
+/* ── Panels: solid (non-glass) ── */
+.siteshot-panel {
+  background-color: rgba(28, 28, 28, 0.48);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  backdrop-filter: blur(24px) saturate(1.4);
+}
+
+/* Shared chrome bars (left sidebar + top annotation bar). */
+.siteshot-chrome-panel {
+  background-color: rgba(28, 28, 28, 0.48);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  backdrop-filter: blur(24px) saturate(1.4);
+}
+
+/* Keep panel styling identical regardless of vibrancy state. */
+html.vibrancy-active .siteshot-panel {
+  background-color: rgba(28, 28, 28, 0.48);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  backdrop-filter: blur(24px) saturate(1.4);
+}
+
+html.vibrancy-active .siteshot-chrome-panel {
+  background-color: rgba(28, 28, 28, 0.48);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  backdrop-filter: blur(24px) saturate(1.4);
+}
+
+/* Windows: no native compositor blur behind panels, so use a darker solid
+   background to compensate for the missing depth/contrast. */
+html.platform-windows .siteshot-chrome-panel,
+html.platform-windows .siteshot-panel {
+  background-color: rgba(14, 14, 16, 0.96);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  backdrop-filter: blur(20px) saturate(1.2);
+}
+
+/* ui-exp: auto-hide the sidebar scrollbar unless actively scrolling */
+.siteshot-sidebar-scroll {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  overscroll-behavior-x: none;
+  touch-action: pan-y;
+}
+
+.siteshot-sidebar-scroll::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+/* ui-exp: consistent glass for tiny preview tiles */
+.siteshot-preview-tile {
+  position: relative;
+  overflow: hidden;
+  background-clip: padding-box;
+}
+
+.siteshot-preview-tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  /* soft highlight, no harsh edges */
+  background:
+    radial-gradient(120% 120% at 18% 12%, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.10) 34%, rgba(255, 255, 255, 0.00) 72%),
+    radial-gradient(120% 120% at 85% 90%, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.00) 58%);
+  opacity: 0.75;
+}
+
+/* ui-exp: lightweight toasts */
+.siteshot-toast-stack {
+  position: fixed;
+  left: 50%;
+  bottom: 68px; /* above footer buttons */
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.siteshot-toast {
+  pointer-events: auto;
+  min-width: 220px;
+  max-width: 360px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(20, 20, 20, 0.75);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font: 12px/1.2 Inter, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif;
+}
+
+.siteshot-toast[data-variant="success"] {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(119, 0, 255, 0.35);
+}
+
+.siteshot-toast[data-variant="error"] {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(239, 68, 68, 0.35);
+}
+
+input[type="checkbox"] {
+  accent-color: #7700FF;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  height: 16px;
+  width: 20px;
+  background: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  background: white;
+  border: none;
+  height: 16px;
+  width: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+input.annotation-color {
+  -webkit-appearance: none;
+  appearance: none;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  overflow: hidden;
+}
+
+input.annotation-color::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+input.annotation-color::-webkit-color-swatch {
+  border: none;
+  border-radius: 9999px;
+}
+
+input.annotation-color::-moz-color-swatch {
+  border: none;
+  border-radius: 9999px;
+}
+
+/* ── SettingsModal button compat (mirrors styles/globals.css for ui-exp) ── */
+.based-button-primary {
+  padding: 0.625rem 1.25rem;
+  color: #fff;
+  border-radius: 1rem;
+  font-weight: 500;
+  transition: all 200ms ease;
+  background: #7700FF;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+}
+.based-button-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+.based-button-secondary {
+  padding: 0.625rem 1.25rem;
+  border-radius: 1rem;
+  font-weight: 500;
+  transition: all 200ms ease;
+  background: rgba(44,44,44,0.85);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #fff;
+}
+.based-button-secondary:hover { background: rgba(60,60,60,0.9); transform: translateY(-1px); }
+
+/* Card + shadow compat (shared components expect these) */
+.card {
+  border-radius: 1rem;
+  border: 1px solid var(--card-border, rgba(255,255,255,0.08));
+  background: var(--card-bg, rgba(30,30,34,0.85));
+  box-shadow: var(--elev-shadow, 0 12px 30px rgba(0,0,0,0.35));
+}
+
+/* ── Annotation text editor (shared with Next.js globals.css) ── */
+.annotation-text-editor {
+  position: absolute;
+  transform: translate(0, 0);
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(28,28,28,0.92);
+  font-family: ui-rounded, "SF Pro Rounded", "SF Pro Text", system-ui, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, Arial, sans-serif;
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 1.15;
+  padding: 10px 12px;
+  resize: both;
+  overflow: auto;
+  outline: none;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+  color: #fff;
+  z-index: 30;
+}
+
+[data-exporting="true"] .annotation-text-editor {
+  display: none !important;
+}
+
+/* ── Annotation color input ── */
+.annotation-color {
+  -webkit-appearance: none;
+  appearance: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.annotation-color::-webkit-color-swatch-wrapper { padding: 0; }
+.annotation-color::-webkit-color-swatch { border: none; border-radius: 50%; }
+
+.settings-modal .card {
+  box-shadow: none;
+}
+
+.shadow-soft-md {
+  box-shadow: var(--elev-shadow, 0 12px 30px rgba(0,0,0,0.35));
+}
+
+/* Settings modal dark-form helpers (match the dark ui-exp theme) */
+.settings-modal input[type="text"],
+.settings-modal select {
+  background: #2c2c2c;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+  color: #fff;
+  padding: 6px 10px;
+  font-size: 13px;
+}
+

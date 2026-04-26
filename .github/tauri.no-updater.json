@@ -1,0 +1,6 @@
+{
+  "$schema": "../src-tauri/gen/schemas/desktop-schema.json",
+  "bundle": {
+    "createUpdaterArtifacts": false
+  }
+}

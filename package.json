@@ -1,0 +1,48 @@
+{
+  "name": "siteshot",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "homepage": "./",
+  "scripts": {
+    "dev": "npm --prefix ui run dev -- --port 3002 --strictPort",
+    "build": "npm --prefix ui run build",
+    "test": "node -e \"require('fs').mkdirSync('build-temp/vitest-tmp',{recursive:true})\" && cross-env TMPDIR=build-temp/vitest-tmp vitest run",
+    "test:watch": "node -e \"require('fs').mkdirSync('build-temp/vitest-tmp',{recursive:true})\" && cross-env TMPDIR=build-temp/vitest-tmp vitest"
+  },
+  "dependencies": {
+    
+    "@theme-toggles/react": "^4.1.0",
+    "classnames": "^2.3.1",
+    "dom-to-image": "^2.6.0",
+    "fast-average-color": "^9.5.0",
+    "framer-motion": "^12.33.0",
+    "hotkeys-js": "^3.13.15",
+    "html-to-image": "^1.11.13",
+    "lucide-react": "^0.454.0",
+    "perfect-freehand": "^1.2.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "region-screenshot-js": "^1.1.0"
+  },
+  "devDependencies": {
+    
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/node": "25.0.10",
+    "@types/react": "19.2.9",
+    "autoprefixer": "^10.4.0",
+    "cross-env": "^7.0.3",
+    "jsdom": "^26.1.0",
+    "postcss": "^8.4.5",
+    "tailwindcss": "^3.0.7",
+    "typescript": "5.9.3",
+    "vitest": "^3.2.4"
+  },
+  "overrides": {
+    "minimatch": "^9.0.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

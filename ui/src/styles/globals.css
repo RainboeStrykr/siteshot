@@ -1,0 +1,1121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Fallbacks (next/font will override these variables when its class is applied). */
+  /* --font-plus-jakarta: "Plus Jakarta Sans"; */
+  /* --font-manrope: "Manrope"; */
+
+  /* System font stacks (preferred) */
+  --font-system-mac: ui-rounded, "SF Pro Rounded", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-system-windows: "Segoe UI Variable", "Segoe UI", "Segoe UI Emoji", "Segoe UI Symbol", "Segoe UI Historic", Arial, sans-serif;
+  --font-system-linux: "Ubuntu", "Cantarell", "Noto Sans", "DejaVu Sans", Arial, sans-serif;
+  --font-system-default: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  --font-app-body: var(--font-system-default);
+  --font-app-small: var(--font-system-default);
+
+  /* Theme tokens (Light defaults) */
+  /* Requested: sidebars lighter, middle workspace slightly darker. */
+  --app-bg: #BFBFC4;
+  --app-fg: #0f1215;
+  --app-muted: #555555;
+
+  /* Canvas + sidebar surface (Light): close to white */
+  --canvas-bg: #FBFBFC;
+  --panel-bg: var(--canvas-bg);
+  --panel-border: rgba(15,18,27,0.12);
+
+  /* Sidebars: frosted glass */
+  --sidebar-glass-bg: rgba(251,251,252,0.25);
+  --sidebar-glass-border: rgba(15,18,27,0.12);
+  --sidebar-glass-blur: 16px;
+
+  --card-bg: var(--canvas-bg);
+  --card-border: rgba(15,18,27,0.10);
+  --elev-shadow: 0 8px 18px rgba(0,0,0,0.04);
+
+  --input-bg: #F9FAFB;
+  --input-border: #E5E7EB;
+
+  --chip-bg: rgba(0,0,0,0.04);
+  --chip-bg-hover: rgba(0,0,0,0.06);
+  --chip-border: rgba(15,18,27,0.10);
+
+  --modal-bg: rgba(240,242,246,0.88);
+
+  --scrollbar-track: rgba(15,18,27,0.06);
+  --scrollbar-thumb: rgba(99,102,241,0.65);
+  --scrollbar-thumb-border: rgba(15,18,27,0.10);
+
+  --canvas-border: rgba(15,18,27,0.10);
+
+  /* Control primitives (Light) */
+  /* Sliders: solid grays (no gradient fill) */
+  --range-track-base: #6b7280; /* dark gray track in light mode */
+  --range-track-fill: #374151; /* darker fill in light mode */
+  --range-thumb-bg: rgba(15,18,27,0.92);
+  --range-thumb-shadow: 0 10px 22px rgba(0,0,0,0.18);
+  --range-thumb-shadow-active: 0 14px 30px rgba(0,0,0,0.22);
+
+  --canvas-shadow: 0 30px 70px rgba(0,0,0,0.16);
+
+  --position-crosshair: rgba(15,18,27,0.10);
+  --position-reset-fg: rgba(15,18,27,0.70);
+  --position-dot-border: rgba(15,18,27,0.18);
+
+  --btn-shimmer-sweep: rgba(0,0,0,0.10);
+  --scrollbar-shadow: 0 3px 10px rgba(0,0,0,0.06);
+
+  /* Editor action pills (Copy/Feedback + pen/text) */
+  --editor-pill-bg: #ECECEC;
+  --editor-pill-bg-hover: #F3F3F3;
+  --editor-pill-border: rgba(15,18,27,0.14);
+  --editor-pill-shadow: 0 8px 18px rgba(0,0,0,0.04);
+}
+
+html {
+  color-scheme: light;
+}
+
+/* Disable accidental selection/dragging in the app (keep inputs selectable). */
+html,
+body,
+#__next {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* App layout: keep the window from scrolling; scroll only inside intended panels. */
+html,
+body {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+#__next {
+  height: 100%;
+  overflow: hidden;
+}
+
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+input,
+textarea,
+[contenteditable="true"] {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+html.dark {
+  /* Theme tokens (Dark) */
+  --app-bg: #161a21;
+  --app-fg: #f4f4f5;
+  --app-muted: #aeb5c3;
+
+  /* Canvas + sidebar surface (Dark) */
+  --canvas-bg: #0f1115;
+  --panel-bg: var(--canvas-bg);
+  --panel-border: #1f2430;
+
+  /* Sidebars: frosted glass */
+  --sidebar-glass-bg: rgba(15,17,21,0.25);
+  --sidebar-glass-border: rgba(255,255,255,0.10);
+  --sidebar-glass-blur: 16px;
+
+  --card-bg: var(--canvas-bg);
+  --card-border: rgba(255,255,255,0.08);
+  --elev-shadow: 0 12px 30px rgba(0,0,0,0.35);
+
+  --input-bg: rgba(255,255,255,0.04);
+  --input-border: rgba(255,255,255,0.08);
+
+  --chip-bg: rgba(255,255,255,0.05);
+  --chip-bg-hover: rgba(255,255,255,0.07);
+  --chip-border: rgba(255,255,255,0.10);
+
+  --modal-bg: rgba(14,16,20,0.88);
+
+  --scrollbar-track: rgba(15,18,27,0.35);
+  --scrollbar-thumb: rgba(99,102,241,0.75);
+  --scrollbar-thumb-border: rgba(15,18,27,0.9);
+
+  --canvas-border: rgba(255,255,255,0.06);
+
+  /* Control primitives (Dark) */
+  --range-track-base: #d1d5db; /* light gray track in dark mode */
+  --range-track-fill: #9ca3af; /* darker fill in dark mode */
+  --range-thumb-bg: rgba(255,255,255,0.95);
+  --range-thumb-shadow: 0 10px 22px rgba(0,0,0,0.45);
+  --range-thumb-shadow-active: 0 14px 30px rgba(0,0,0,0.50);
+
+  --canvas-shadow: 0 30px 70px rgba(0,0,0,0.35);
+
+  --position-crosshair: rgba(255,255,255,0.08);
+  --position-reset-fg: rgba(249,250,251,0.75);
+  --position-dot-border: rgba(255,255,255,0.22);
+
+  --btn-shimmer-sweep: rgba(255,255,255,0.25);
+  --scrollbar-shadow: 0 4px 18px rgba(0,0,0,0.45);
+
+  /* Editor action pills (Copy/Feedback + pen/text) */
+  --editor-pill-bg: #242A35;
+  --editor-pill-bg-hover: #2B3341;
+  --editor-pill-border: rgba(255,255,255,0.10);
+  --editor-pill-shadow: 0 12px 30px rgba(0,0,0,0.35);
+
+  color-scheme: dark;
+}
+
+html.platform-mac {
+  --font-app-body: var(--font-system-mac);
+  --font-app-small: var(--font-system-mac);
+}
+
+html.platform-windows {
+  --font-app-body: var(--font-system-windows);
+  --font-app-small: var(--font-system-windows);
+}
+
+html.platform-linux {
+  --font-app-body: var(--font-system-linux);
+  --font-app-small: var(--font-system-linux);
+}
+
+/* Background usage: avoid running cosmetic shimmer animations when the app is not visible. */
+html.app-hidden .btn-shimmer::after {
+  animation: none !important;
+  opacity: 0 !important;
+}
+
+html, body {
+  background-color: var(--app-bg);
+  color: var(--app-fg);
+  font-weight: 400;
+}
+
+html.capture-mode,
+html.capture-mode body,
+html.capture-mode #__next {
+  background: transparent !important;
+}
+
+/* Tauri window transparency (required for macOS vibrancy / Windows acrylic). */
+html.tauri-app,
+html.tauri-app body,
+html.tauri-app #__next {
+  background: transparent !important;
+}
+
+/* In Tauri, let the native vibrancy show through more. */
+html.tauri-app {
+  --sidebar-glass-bg: rgba(251,251,252,0.38);
+}
+
+html.tauri-app.dark {
+  --sidebar-glass-bg: rgba(15,17,21,0.28);
+}
+
+html.capture-mode body {
+  cursor: crosshair;
+}
+
+/* Apply Manrope font to small text */
+.text-xs,
+.text-sm,
+small {
+  font-family: var(--font-app-small), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+/* Default headings and body to Plus Jakarta Sans */
+html, body, h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-app-body), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+@layer base {
+  html,
+  body {
+    background-color: var(--app-bg);
+    color: var(--app-fg);
+    height: 100%;
+    font-family: var(--font-app-body), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+  }
+
+  /* Remove default browser focus outlines / tap highlights (app provides its own styling). */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  :focus,
+  :focus-visible {
+    outline: none;
+  }
+  button:focus,
+  button:focus-visible,
+  input:focus,
+  input:focus-visible,
+  select:focus,
+  select:focus-visible,
+  textarea:focus,
+  textarea:focus-visible {
+    outline: none;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-app-body), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+  }
+  
+  .text-sm, .text-xs, small {
+    font-family: var(--font-app-small), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+
+  /* Native OS sliders: do not override browser/WebView styling. */
+  input[type="range"] {
+    -webkit-appearance: auto;
+    appearance: auto;
+    width: 100%;
+  }
+}
+
+@layer components {
+  /* Gradient accent helpers */
+  .accent-gradient {
+    background: #0b2a6f;
+  }
+  .accent-gradient-text {
+    background: none;
+    color: #0b2a6f;
+  }
+
+  /* Modern buttons */
+  .based-button-primary {
+    padding: 0.625rem 1.25rem; /* px-5 py-2.5 */
+    color: #fff;
+    border-radius: 1rem; /* rounded-2xl */
+    font-weight: 500;
+    transition: all 200ms ease;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    background: #0b2a6f;
+  }
+  .based-button-primary:hover { filter: brightness(1.05); transform: translateY(-1px); }
+
+  .based-button-secondary {
+    padding: 0.625rem 1.25rem;
+    border-radius: 1rem;
+    font-weight: 500;
+    transition: all 200ms ease;
+    box-shadow: var(--elev-shadow);
+    background: var(--chip-bg);
+    border: 1px solid var(--chip-border);
+    color: var(--app-fg);
+  }
+  .based-button-secondary:hover { background: var(--chip-bg-hover); transform: translateY(-1px); }
+
+  /* Solid action pills used in the canvas overlay buttons */
+  .editor-pill-button {
+    background: var(--editor-pill-bg) !important;
+    border: 1px solid var(--editor-pill-border) !important;
+    box-shadow: var(--editor-pill-shadow) !important;
+  }
+  .editor-pill-button:hover {
+    background: var(--editor-pill-bg-hover) !important;
+  }
+
+  .based-input {
+    border-radius: 1rem;
+    padding: 0.5rem 0.75rem; /* px-3 py-2 */
+    color: var(--app-fg);
+    box-shadow: var(--elev-shadow);
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+  }
+
+  .annotation-tool-btn {
+    padding: 0.5rem;
+    border-radius: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    background: var(--editor-pill-bg);
+    border: 1px solid var(--editor-pill-border);
+    box-shadow: var(--editor-pill-shadow);
+  }
+
+  .annotation-tool-btn:hover {
+    background: var(--editor-pill-bg-hover);
+  }
+
+  .annotation-tool-btn--active {
+    border-color: var(--chip-border);
+    background: var(--chip-bg-hover);
+    box-shadow: var(--elev-shadow), 0 0 0 1px var(--panel-border);
+  }
+
+  .annotation-color-input {
+    width: 24px;
+    height: 24px;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: transparent;
+    padding: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    display: block;
+  }
+
+  .annotation-color-input::-webkit-color-swatch-wrapper {
+    padding: 0;
+    border-radius: 9999px;
+  }
+
+  .annotation-color-input::-webkit-color-swatch {
+    border: none;
+    border-radius: 9999px;
+  }
+
+  .annotation-color-input::-moz-color-swatch {
+    border: none;
+    border-radius: 9999px;
+  }
+
+  .annotation-text-editor {
+    position: absolute;
+    transform: translate(0, 0);
+    border-radius: 14px;
+    border: 1px solid var(--input-border);
+    background: var(--modal-bg);
+    font-family: TikTok Sans, TikTokText, Proxima Nova, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 1.15;
+    padding: 10px 12px;
+    resize: both;
+    overflow: auto;
+    outline: none;
+    box-shadow: var(--elev-shadow);
+    color: var(--app-fg);
+  }
+
+  [data-exporting="true"] .annotation-text-editor {
+    display: none !important;
+  }
+
+  /* Export reliability: dom-to-image + WebKit can fail to rasterize masked content.
+     Use attribute-driven overrides so they apply immediately (no React re-render timing). */
+  [data-exporting="true"] .siteshot-card-clip {
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+
+  /* Export with square corners — avoids needing pixel-level corner flattening post-processing. */
+  [data-exporting="true"] .siteshot-card-shadow,
+  [data-exporting="true"] .siteshot-card-clip,
+  [data-exporting="true"] .siteshot-card-underlay,
+  [data-exporting="true"] .siteshot-card-border {
+    border-radius: 0 !important;
+  }
+
+
+  /* WebKit + dom-to-image can fail to paint <img> nodes that have 3D transforms.
+     These are perf-only in preview; remove them for deterministic exports. */
+  [data-exporting="true"] img[data-siteshot-source="1"] {
+    transform: none !important;
+    will-change: auto !important;
+    -webkit-backface-visibility: visible !important;
+    backface-visibility: visible !important;
+  }
+
+  /* Same for background/overlay layers that use translateZ to avoid seams. */
+  [data-exporting="true"] canvas,
+  [data-exporting="true"] .transform-overlay {
+    transform: none !important;
+    will-change: auto !important;
+  }
+
+  .based-select {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 8px;
+    padding: 0.5rem 2.2rem 0.5rem 0.75rem;
+    box-shadow: none;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    min-height: 36px;
+    width: 100%;
+
+    /* Use theme-aware colors */
+    background-color: var(--input-bg);
+    color: var(--app-fg);
+    border: 1px solid var(--input-border);
+    color-scheme: light dark;
+
+    /* Custom dropdown arrow - larger and more visible */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 20px 20px;
+
+    cursor: pointer;
+    transition: border-color 150ms ease, background-color 150ms ease;
+  }
+
+  .based-select:focus {
+    outline: none;
+    border-color: var(--scrollbar-thumb);
+    box-shadow: 0 0 0 2px rgba(99,102,241,0.15);
+  }
+
+  .based-select:hover:not(:focus) {
+    border-color: var(--app-muted);
+  }
+
+  .based-select option {
+    padding: 0.4rem 0.5rem;
+    background-color: var(--card-bg);
+    color: var(--app-fg);
+  }
+
+  .segmented-toggle {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem;
+    border-radius: 9999px;
+    background: var(--chip-bg);
+    border: 1px solid var(--chip-border);
+    gap: 0.25rem;
+    position: relative;
+  }
+  .segmented-toggle__btn {
+    position: relative;
+    border-radius: 9999px;
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--app-muted);
+    transition: color 150ms ease;
+  }
+  .segmented-toggle__btn:not(.active):hover {
+    color: var(--app-fg);
+  }
+  .segmented-toggle__btn.active {
+    /* Gradient pill text should be white in all themes. */
+    color: #ffffff;
+  }
+  .segmented-toggle__active {
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+  }
+
+  .settings-chip {
+    width: 38px;
+    height: 38px;
+    border-radius: 14px;
+    border: 1px solid var(--chip-border);
+    background: var(--chip-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--app-fg);
+    transition: all 160ms ease;
+  }
+  .settings-chip:hover {
+    color: var(--app-fg);
+    border-color: var(--chip-border);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.4);
+  }
+
+  /* Desktop window drag regions (Tauri/WebKit) */
+  .window-drag-region {
+    -webkit-app-region: drag;
+    user-select: none;
+  }
+  .window-no-drag {
+    -webkit-app-region: no-drag;
+  }
+
+  /* Slightly denser chips for titlebar window controls */
+  .window-control-chip {
+    width: 14px;
+    height: 14px;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(8, 9, 10, 0.82);
+    transition: transform 120ms ease, filter 120ms ease;
+    padding: 0;
+  }
+
+  .window-control-chip svg {
+    width: 8px;
+    height: 8px;
+    opacity: 0;
+    transition: opacity 120ms ease;
+  }
+
+  .window-control-chip:hover svg,
+  .window-control-chip:focus-visible svg {
+    opacity: 1;
+  }
+
+  .window-control-chip:hover,
+  .window-control-chip:focus-visible {
+    transform: scale(1.04);
+    filter: brightness(0.97);
+  }
+
+  .window-control-chip[data-variant='minimize'] {
+    background: #f5be3b;
+    border-color: rgba(145, 106, 20, 0.6);
+  }
+
+  .window-control-chip[data-variant='maximize'] {
+    background: #57c94f;
+    border-color: rgba(40, 120, 44, 0.6);
+  }
+
+  .window-control-chip[data-variant='close'] {
+    background: #ed6a5f;
+    border-color: rgba(128, 38, 32, 0.6);
+  }
+
+  .slider-field {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+  .slider-field__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--app-muted);
+    margin-bottom: 0;
+  }
+  .slider-field__header span:last-child {
+    color: var(--app-fg);
+    font-variant-numeric: tabular-nums;
+  }
+  .slider-field__input {
+    width: 100%;
+    display: block;
+    /* Keep aligned with the global range hit target. */
+    height: 28px;
+  }
+
+  .slider-field__row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .slider-field__icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 14px;
+    border: 1px solid var(--chip-border);
+    background: var(--chip-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--app-fg);
+    flex: 0 0 auto;
+  }
+
+  /* cc-slider now uses the standard range styling */
+  .cc-slider {
+    background: transparent;
+    border: 0;
+  }
+
+  .position-pad {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+  .position-pad__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--app-muted);
+  }
+  .position-pad__header span:last-child {
+    color: var(--app-fg);
+    font-variant-numeric: tabular-nums;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .position-pad__meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .position-pad__reset {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 9999px;
+    border: 1px solid var(--chip-border);
+    background: var(--chip-bg);
+    color: var(--position-reset-fg);
+    padding: 0;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 140ms ease, border-color 140ms ease, color 140ms ease, transform 120ms ease;
+  }
+  .position-pad__reset:hover {
+    background: var(--chip-bg-hover);
+    border-color: var(--chip-border);
+    color: var(--app-fg);
+  }
+  .position-pad__reset:active {
+    transform: translateY(0.5px);
+  }
+  .position-pad__reset:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(139,92,246,0.55);
+  }
+  .position-pad__resetIcon {
+    width: 14px;
+    height: 14px;
+    display: inline-flex;
+  }
+  .position-pad__resetIcon > svg {
+    width: 14px;
+    height: 14px;
+    display: block;
+  }
+  .position-pad__surface {
+    position: relative;
+    width: 100%;
+    max-width: 220px;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+    border-radius: 1rem;
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    box-shadow: inset 0 0 0 1px var(--panel-border);
+    touch-action: none;
+    cursor: grab;
+    user-select: none;
+  }
+  .position-pad__surface:active { cursor: grabbing; }
+
+  .position-pad__crosshair {
+    position: absolute;
+    background: var(--position-crosshair);
+  }
+  .position-pad__crosshair--h {
+    left: 10px;
+    right: 10px;
+    top: 50%;
+    height: 1px;
+    transform: translateY(-0.5px);
+  }
+  .position-pad__crosshair--v {
+    top: 10px;
+    bottom: 10px;
+    left: 50%;
+    width: 1px;
+    transform: translateX(-0.5px);
+  }
+
+  .position-pad__dot {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 9999px;
+    transform: translate(-50%, -50%);
+    background: #0b2a6f;
+    border: 2px solid var(--position-dot-border);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.5);
+  }
+
+  @media (max-width: 980px) {
+    .position-pad__surface {
+      max-width: 180px;
+      border-radius: 0.9rem;
+    }
+  }
+  .slider-field:last-child {
+    margin-bottom: 0;
+  }
+
+  .sidebar-header {
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    font-weight: 700;
+    color: var(--app-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .sidebar-section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    font-weight: 800;
+    color: var(--app-muted);
+    margin-bottom: 0.65rem;
+  }
+
+  .sidebar-section-title svg {
+    width: 14px;
+    height: 14px;
+    opacity: 0.9;
+  }
+
+  .sidebar-divider {
+    height: 1px;
+    width: 100%;
+    background: var(--panel-border);
+    opacity: 0.9;
+  }
+
+  .sidebar-flat-section {
+    background: transparent;
+  }
+
+  .sidebar-shell {
+    background: var(--sidebar-glass-bg);
+    border-color: var(--sidebar-glass-border);
+    backdrop-filter: blur(var(--sidebar-glass-blur)) saturate(140%);
+    -webkit-backdrop-filter: blur(var(--sidebar-glass-blur)) saturate(140%);
+    position: relative;
+    z-index: 2;
+    background-clip: padding-box;
+    box-shadow:
+      0 18px 50px rgba(0,0,0,0.10),
+      inset 0 1px 0 rgba(255,255,255,0.20);
+  }
+
+  /* Visual glass layer (works even if backdrop-filter is unsupported). */
+  .sidebar-shell::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background:
+      radial-gradient(1200px 600px at -10% -20%, rgba(255,255,255,0.35), rgba(255,255,255,0.0) 60%),
+      radial-gradient(900px 420px at 110% 0%, rgba(255,255,255,0.18), rgba(255,255,255,0.0) 55%),
+      linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+    mix-blend-mode: soft-light;
+    opacity: 0.9;
+  }
+
+  html.dark .sidebar-shell::before {
+    background:
+      radial-gradient(1200px 600px at -10% -20%, rgba(255,255,255,0.10), rgba(0,0,0,0.0) 60%),
+      radial-gradient(900px 420px at 110% 0%, rgba(255,255,255,0.07), rgba(0,0,0,0.0) 55%),
+      linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.02));
+    mix-blend-mode: normal;
+    opacity: 0.85;
+  }
+
+  /* In native transparent windows, avoid stacking extra darkening over vibrancy. */
+  html.tauri-app .sidebar-shell::before {
+    opacity: 0.3;
+  }
+
+  html.tauri-app .sidebar-shell {
+    box-shadow:
+      0 12px 30px rgba(0,0,0,0.06),
+      inset 0 1px 0 rgba(255,255,255,0.14);
+  }
+
+  /* Keep both sidebars identical except which side gets the divider line. */
+  .sidebar-shell--left {
+    border-right: 1px solid var(--sidebar-glass-border);
+  }
+  .sidebar-shell--right {
+    border-left: 1px solid var(--sidebar-glass-border);
+  }
+
+  .card {
+    border-radius: 1rem;
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    box-shadow: var(--elev-shadow);
+  }
+
+  /* Let cards inherit a bit of the glass when inside sidebars. */
+  .sidebar-shell .card {
+    background: color-mix(in oklab, var(--card-bg) 78%, transparent);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  .settings-modal .card {
+    box-shadow: none;
+  }
+
+  .wallpaper-card {
+    transition: transform 180ms cubic-bezier(0.34, 1.56, 0.64, 1), border-color 120ms ease;
+    will-change: transform;
+  }
+
+  .wallpaper-card:hover {
+    transform: scale(1.08);
+  }
+
+  .wallpaper-card:active {
+    transform: scale(0.98);
+  }
+
+  /* Custom wallpaper upload tile (pinned first square) */
+  .custom-wallpaper-upload-tile {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 180ms cubic-bezier(0.34, 1.56, 0.64, 1), background-color 120ms ease, border-color 120ms ease;
+    will-change: transform;
+  }
+
+  .custom-wallpaper-upload-tile__bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.15);
+    filter: blur(18px) saturate(1.05);
+    opacity: 0.9;
+  }
+
+  .custom-wallpaper-upload-tile__overlay {
+    position: absolute;
+    inset: 0;
+    background: color-mix(in oklab, var(--card-bg) 55%, transparent);
+    backdrop-filter: blur(2px);
+  }
+
+  .custom-wallpaper-upload-tile__btn {
+    width: 54px;
+    height: 54px;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--card-border);
+    background: color-mix(in oklab, var(--panel-bg) 70%, transparent);
+    box-shadow: var(--elev-shadow);
+  }
+
+  .custom-wallpaper-upload-tile:hover {
+    transform: scale(1.06);
+    background: var(--chip-bg-hover);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .custom-wallpaper-upload-tile:active {
+    transform: scale(0.98);
+  }
+
+  .custom-wallpaper-upload-tile__plus {
+    font-size: 34px;
+    line-height: 1;
+    font-weight: 700;
+    color: var(--app-muted);
+  }
+
+  .custom-wallpaper-upload-tile__icon {
+    color: var(--app-muted);
+    opacity: 0.7;
+    transition: all 0.2s ease;
+  }
+
+  /* Export-only: omit watermark from DOM capture when we re-apply it in Rust. */
+  [data-export-omit-watermark="true"] [data-watermark="1"] {
+    display: none !important;
+  }
+
+  .custom-wallpaper-upload-tile:hover .custom-wallpaper-upload-tile__icon {
+    color: var(--app-fg);
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  html.dark .custom-wallpaper-upload-tile {
+    background: var(--chip-bg);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  html.dark .custom-wallpaper-upload-tile:hover {
+    background: var(--chip-bg-hover);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  html.dark .custom-wallpaper-upload-tile__plus {
+    color: var(--app-fg);
+    opacity: 0.8;
+  }
+
+  html.dark .custom-wallpaper-upload-tile__icon {
+    color: var(--app-fg);
+    opacity: 0.6;
+  }
+
+  html.dark .custom-wallpaper-upload-tile:hover .custom-wallpaper-upload-tile__icon {
+    color: var(--app-fg);
+    opacity: 1;
+  }
+
+  /* Soft shadow utility used on hover */
+  .shadow-soft-md { box-shadow: var(--elev-shadow); }
+
+  /* Shimmer sweep effect for buttons */
+  .btn-shimmer { position: relative; overflow: hidden; }
+  .btn-shimmer::after {
+    content: "";
+    position: absolute;
+    inset: -2px; /* slightly larger to avoid clipping */
+    background: linear-gradient(120deg, transparent 20%, var(--btn-shimmer-sweep) 50%, transparent 80%);
+    transform: translateX(-130%);
+    pointer-events: none;
+  }
+  .btn-shimmer:hover::after { animation: shimmer-sweep .8s ease forwards; }
+
+  /* Continuous shimmer modifier */
+  .btn-shimmer.shimmer-loop::after { animation: shimmer-sweep 1.2s linear infinite; }
+
+  /* Hover-only looping shimmer modifier */
+  .btn-shimmer.shimmer-loop-on-hover:hover::after { animation: shimmer-sweep 1.1s linear infinite; }
+}
+
+.sidebar-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+  overscroll-behavior: contain;
+}
+.sidebar-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+.sidebar-scroll::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 999px;
+  border: 0;
+}
+.sidebar-scroll::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: #0b2a6f;
+  box-shadow: var(--scrollbar-shadow);
+  border: 0;
+}
+.sidebar-scroll::-webkit-scrollbar-thumb:hover {
+  background: #0b2a6f;
+}
+.sidebar-scroll::-webkit-scrollbar-thumb:active {
+  background: #0b2a6f;
+  box-shadow: 0 6px 22px rgba(0,0,0,0.55);
+}
+
+/* Canvas card elevation to separate from translucent panels */
+.canvas-card {
+  background: var(--canvas-bg);
+  box-shadow: var(--canvas-shadow);
+  border: 1px solid var(--canvas-border);
+  border-radius: 20px;
+}
+
+/* Utility to hide scrollbars while preserving scrollability */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+/* Toggle Switch - pill shape and gradient accent */
+.switch { font-size: 14px; position: relative; display: inline-block; width: 3.1em; height: 1.8em; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; inset: 0; border-radius: 9999px; transition: .2s; background: var(--chip-bg); border: 1px solid var(--chip-border); }
+.slider:before { position: absolute; content: ""; height: 1.4em; width: 1.4em; border-radius: 9999px; left: 0.2em; bottom: 0.2em; background: var(--app-fg); transition: .2s; }
+.switch input:checked + .slider { background: #0b2a6f; }
+.switch input:checked + .slider:before { transform: translateX(1.3em); }
+
+/* Do not export transform overlay */
+.transform-overlay { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+@media print { .transform-overlay { display: none !important; opacity: 0 !important; } }
+
+/* Shimmer keyframes */
+@keyframes shimmer-sweep { to { transform: translateX(130%); } }
+
+/* Light-mode utility overrides (app was originally dark-first) */
+
+html:not(.dark) .text-gray-200 { color: rgba(15,18,27,0.88) !important; }
+html:not(.dark) .text-gray-300 { color: rgba(15,18,27,0.78) !important; }
+html:not(.dark) .text-gray-400 { color: rgba(15,18,27,0.68) !important; }
+html:not(.dark) .text-gray-500 { color: rgba(15,18,27,0.58) !important; }
+
+html:not(.dark) .bg-white\/5 { background-color: rgba(0,0,0,0.03) !important; }
+html:not(.dark) .bg-white\/10 { background-color: rgba(0,0,0,0.05) !important; }
+html:not(.dark) .bg-white\/15 { background-color: rgba(0,0,0,0.07) !important; }
+html:not(.dark) .bg-white\/20 { background-color: rgba(0,0,0,0.09) !important; }
+
+html:not(.dark) .hover\:bg-white\/5:hover { background-color: rgba(0,0,0,0.03) !important; }
+html:not(.dark) .hover\:bg-white\/10:hover { background-color: rgba(0,0,0,0.05) !important; }
+html:not(.dark) .hover\:bg-white\/15:hover { background-color: rgba(0,0,0,0.07) !important; }
+html:not(.dark) .hover\:bg-white\/20:hover { background-color: rgba(0,0,0,0.09) !important; }
+
+html:not(.dark) .border-white\/10 { border-color: rgba(15,18,27,0.10) !important; }
+html:not(.dark) .border-white\/20 { border-color: rgba(15,18,27,0.16) !important; }
+html:not(.dark) .border-white\/30 { border-color: rgba(15,18,27,0.22) !important; }
+
+html:not(.dark) .hover\:border-white\/10:hover { border-color: rgba(15,18,27,0.10) !important; }
+html:not(.dark) .hover\:border-white\/20:hover { border-color: rgba(15,18,27,0.16) !important; }
+html:not(.dark) .hover\:border-white\/30:hover { border-color: rgba(15,18,27,0.22) !important; }
+
+html:not(.dark) .ring-white\/10 { --tw-ring-color: rgba(15,18,27,0.10) !important; }
+html:not(.dark) .ring-white\/20 { --tw-ring-color: rgba(15,18,27,0.16) !important; }
+html:not(.dark) .ring-white\/30 { --tw-ring-color: rgba(15,18,27,0.22) !important; }
+html:not(.dark) .focus-visible\:ring-white\/10:focus-visible { --tw-ring-color: rgba(15,18,27,0.10) !important; }
+html:not(.dark) .focus-visible\:ring-white\/20:focus-visible { --tw-ring-color: rgba(15,18,27,0.16) !important; }
+html:not(.dark) .focus-visible\:ring-white\/30:focus-visible { --tw-ring-color: rgba(15,18,27,0.22) !important; }
+
+html:not(.dark) .divide-white\/5 > :not([hidden]) ~ :not([hidden]) { border-color: rgba(15,18,27,0.06) !important; }
+html:not(.dark) .divide-white\/10 > :not([hidden]) ~ :not([hidden]) { border-color: rgba(15,18,27,0.10) !important; }
+
+/* Authentication Loader */
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid var(--app-fg);
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+

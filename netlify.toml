@@ -1,0 +1,14 @@
+[build]
+  base    = "ui"
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# Route /api/s3-img/* to the edge function in production.
+# In dev the Vite proxy handles the same path, so behaviour is identical.
+[[redirects]]
+  from   = "/api/s3-img/*"
+  to     = "/.netlify/functions/s3-img-proxy/:splat"
+  status = 200

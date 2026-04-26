@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark-mode theme variables (used by shared components like SettingsModal) */
+    --app-fg: #f4f4f5;
+    --app-muted: #aeb5c3;
+    --card-border: rgba(255,255,255,0.08);
+    --elev-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    --chip-bg: rgba(255,255,255,0.05);
+    --chip-bg-hover: rgba(255,255,255,0.07);
+    --chip-border: rgba(255,255,255,0.10);
+    --modal-bg: rgba(20,22,28,0.95);
+
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem
+  }
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply text-foreground;
+    /* fallback handled by the html/body/#root rule below; don't override here */
+  }
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  background: transparent;
+  overflow: hidden;
+}
+
+/* macOS window corners: the native window has rounded corners but the webview
+   content area is a rectangle.  Clip the html element to match the native
+   radius so we never paint outside the rounded frame (avoids "unfilled corner"
+   artefacts on macOS Liquid Glass and similar compositing). */
+html {
+  overflow: hidden;
+}
+
+/* Single source of truth for visible app corner radius on macOS. */
+html.platform-mac {
+  --window-corner-radius: 32px;
+}
+
+html.platform-mac,
+html.platform-mac body,
+html.platform-mac #root,
+html.platform-mac .font-inter {
+  font-family: "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+
+/* Disable accidental selection/dragging in the app (keep inputs selectable). */
+html,
+body,
+#root {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+input,
+textarea,
+[contenteditable="true"] {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* Desktop window drag regions (Tauri/WebKit) */
+.window-drag-region {
+  -webkit-app-region: drag;
+  user-select: none;
+}
+
+.window-no-drag {
+  -webkit-app-region: no-drag;
+}
+
+/* ── Settings window form controls ───────────────────────────────────────── */
+input[type="range"] {
+  appearance: none;
+  background: #2C2C2C;
+  height: 4px;
+  border-radius: 2px;
+}
+
+input[type="checkbox"] {
+  accent-color: #7700FF;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  height: 16px;
+  width: 20px;
+  background: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  background: white;
+  border: none;
+  height: 16px;
+  width: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+input.annotation-color {
+  -webkit-appearance: none;
+  appearance: none;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  overflow: hidden;
+}
+
+input.annotation-color::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+input.annotation-color::-webkit-color-swatch {
+  border: none;
+  border-radius: 9999px;
+}
+
+input.annotation-color::-moz-color-swatch {
+  border: none;
+  border-radius: 9999px;
+}
