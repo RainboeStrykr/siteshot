@@ -146,7 +146,7 @@ input[type="range"] {
 }
 
 input[type="checkbox"] {
-  accent-color: #7700FF;
+  accent-color: #307b52;
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -190,3 +190,4 @@ input.annotation-color::-moz-color-swatch {
   border: none;
   border-radius: 9999px;
 }
+

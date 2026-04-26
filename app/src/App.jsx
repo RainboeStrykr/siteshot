@@ -268,7 +268,7 @@ const App = () => {
       if (selectedSystemWallpaper?.filePath) {
         return { backgroundType: 'wallpaper', wallpaper: selectedSystemWallpaper.filePath, wallpaperSource: 'system', wallpaperPath: selectedSystemWallpaper.filePath }
       }
-      return { backgroundType: 'gradient', customTheme: { colorStart: '#7700FF', colorEnd: '#2C2C2C', angleDeg: 135 } }
+      return { backgroundType: 'gradient', customTheme: { colorStart: '#307b52', colorEnd: '#2C2C2C', angleDeg: 135 } }
     })()
 
     const isCustomShadow = selectedShadowStyle === 'Custom'
@@ -370,7 +370,7 @@ const App = () => {
   }, [])
 
   // Wallpaper tab config
-  const activeWallpaperColor = '#7700FF'
+  const activeWallpaperColor = '#307b52'
   const wallpaperTabs = [
     { id: 'gradients', label: 'Gradient' },
     { id: 'colors', label: 'Color' },
@@ -496,4 +496,5 @@ const App = () => {
 }
 
 export default App
+
 

@@ -1504,7 +1504,7 @@ export function useCanvasAnnotations({ activeTool, onRequestDeselectTool, bgCanv
       width: HANDLE_SZ,
       height: HANDLE_SZ,
       background: '#fff',
-      border: '1.5px solid rgba(119,0,255,0.85)',
+      border: '1.5px solid rgba(48,123,82,0.85)',
       borderRadius: 9999,
       position: 'absolute',
       pointerEvents: 'auto',
@@ -1603,7 +1603,7 @@ export function useCanvasAnnotations({ activeTool, onRequestDeselectTool, bgCanv
               top,
               width,
               height,
-              border: '1.5px solid rgba(119,0,255,0.8)',
+              border: '1.5px solid rgba(48,123,82,0.8)',
               borderRadius: 2,
               boxSizing: 'border-box',
               pointerEvents: 'auto',
@@ -1652,7 +1652,7 @@ export function useCanvasAnnotations({ activeTool, onRequestDeselectTool, bgCanv
               top: css.top,
               width: css.width,
               height: css.height,
-              border: '1.5px dashed rgba(119,0,255,0.75)',
+              border: '1.5px dashed rgba(48,123,82,0.75)',
               borderRadius: 2,
               boxSizing: 'border-box',
               pointerEvents: 'none',
@@ -1828,5 +1828,6 @@ export function useCanvasAnnotations({ activeTool, onRequestDeselectTool, bgCanv
     clearAllAnnotations,
   };
 }
+
 
 

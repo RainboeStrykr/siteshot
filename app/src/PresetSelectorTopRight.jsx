@@ -91,7 +91,7 @@ export default function PresetSelectorTopRight() {
           <SelectSeparator className="bg-white/10" />
           <SelectItem
             value="__save_new__"
-            className="text-[13px] font-inter font-light text-[#7700FF] focus:bg-white/10 focus:text-[#9933ff] cursor-pointer"
+            className="text-[13px] font-inter font-light text-[#307b52] focus:bg-white/10 focus:text-[#256642] cursor-pointer"
           >
             Save current as preset…
           </SelectItem>
@@ -100,3 +100,4 @@ export default function PresetSelectorTopRight() {
     </div>
   )
 }
+

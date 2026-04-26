@@ -32,7 +32,7 @@ export default function WallpaperGrid() {
 
   const colorPickerHex = (() => {
     const hex = String(backgroundSelection?.color?.hex || '').trim()
-    return (backgroundSelection?.type === 'color' && hex) ? hex : '#7700FF'
+    return (backgroundSelection?.type === 'color' && hex) ? hex : '#307b52'
   })()
 
   return (
@@ -157,14 +157,14 @@ export default function WallpaperGrid() {
             className={
               'siteshot-preview-tile w-[25px] h-[25px] rounded-[7px] border border-white/10 bg-[#2C2C2C] relative' +
               (item ? ' cursor-pointer' : '') +
-              (isSelected ? ' ring-2 ring-[#7700FF]' : '')
+              (isSelected ? ' ring-2 ring-[#307b52]' : '')
             }
             title={item?.name || undefined}
             style={(() => {
               if (url) return { backgroundImage: `url("${url}")`, backgroundSize: 'cover', backgroundPosition: 'center' }
               if (cssPreview) return { backgroundImage: cssPreview, backgroundSize: 'cover', backgroundPosition: 'center' }
               if (wallpaperType === 'colors' && item?.hex) {
-                if (item?.kind === 'colorPicker') return { backgroundImage: 'conic-gradient(from 210deg, #ff0080, #7700ff, #00e0ff, #34d399, #fbbf24, #ff0080)' }
+                if (item?.kind === 'colorPicker') return { backgroundImage: 'conic-gradient(from 210deg, #ff0080, #307b52, #00e0ff, #34d399, #fbbf24, #ff0080)' }
                 return { backgroundColor: item.hex }
               }
               return undefined
@@ -180,7 +180,7 @@ export default function WallpaperGrid() {
                   type="color"
                   aria-label="Custom color"
                   className="absolute inset-0 opacity-0 cursor-pointer"
-                  value={String(colorPickerHex || '#7700FF')}
+                  value={String(colorPickerHex || '#307b52')}
                   onClick={(e) => e.stopPropagation()}
                   onChange={(e) => {
                     e.stopPropagation()
@@ -198,4 +198,5 @@ export default function WallpaperGrid() {
     </div>
   )
 }
+
 

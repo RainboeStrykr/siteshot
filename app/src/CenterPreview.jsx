@@ -206,7 +206,7 @@ export default function CenterPreview() {
             onDrop={tab === 'upload' ? handleDrop : undefined}
             onDragOver={tab === 'upload' ? handleDragOver : undefined}
             onDragLeave={tab === 'upload' ? handleDragLeave : undefined}
-            className="mx-auto w-full max-w-[1240px] rounded-[28px] border border-dashed border-white/20 bg-[#2C2C2C]/90 text-white shadow-[0_24px_64px_rgba(0,0,0,0.32),inset_0_1px_0_rgba(255,255,255,0.06)] transition-colors [&[data-drag-over]]:border-[#7700FF] [&[data-drag-over]]:bg-[#7700FF]/10"
+            className="mx-auto w-full max-w-[1240px] rounded-[28px] border border-dashed border-white/20 bg-[#2C2C2C]/90 text-white shadow-[0_24px_64px_rgba(0,0,0,0.32),inset_0_1px_0_rgba(255,255,255,0.06)] transition-colors [&[data-drag-over]]:border-[#307b52] [&[data-drag-over]]:bg-[#307b52]/10"
             style={{ cursor: 'default' }}
           >
             {/* Tab switcher */}
@@ -259,7 +259,7 @@ export default function CenterPreview() {
                     whileTap={{ scale: 0.97 }}
                   >
                     <Button
-                      className="siteshot-footer-btn bg-[#7700FF] font-inter font-light text-white shadow-[0_12px_28px_rgba(119,0,255,0.35)] hover:bg-[#6600e0] pointer-events-none"
+                      className="siteshot-footer-btn bg-[#307b52] font-inter font-light text-white shadow-[0_12px_28px_rgba(48,123,82,0.35)] hover:bg-[#256642] pointer-events-none"
                       tabIndex={-1}
                     >
                       Upload screenshot
@@ -292,7 +292,7 @@ export default function CenterPreview() {
                     aria-label="Website URL to screenshot"
                     disabled={capturing}
                     spellCheck={false}
-                    className="flex-1 min-w-0 h-[42px] px-4 rounded-[12px] bg-[#1a1a1a] border border-white/10 text-sm font-inter font-light text-white placeholder:text-white/30 outline-none focus:border-[#7700FF]/60 transition-colors disabled:opacity-50"
+                    className="flex-1 min-w-0 h-[42px] px-4 rounded-[12px] bg-[#1a1a1a] border border-white/10 text-sm font-inter font-light text-white placeholder:text-white/30 outline-none focus:border-[#307b52]/60 transition-colors disabled:opacity-50"
                   />
                   <motion.div
                     whileHover={{ scale: 1.03 }}
@@ -303,7 +303,7 @@ export default function CenterPreview() {
                       onClick={handleCapture}
                       disabled={capturing}
                       aria-label="Capture screenshot"
-                      className="h-[42px] px-5 rounded-[12px] bg-[#7700FF] hover:bg-[#6600e0] disabled:opacity-50 text-sm font-inter font-light text-white shadow-[0_12px_28px_rgba(119,0,255,0.35)]"
+                      className="h-[42px] px-5 rounded-[12px] bg-[#307b52] hover:bg-[#256642] disabled:opacity-50 text-sm font-inter font-light text-white shadow-[0_12px_28px_rgba(48,123,82,0.35)]"
                     >
                       {capturing ? (
                         <>
@@ -333,3 +333,4 @@ export default function CenterPreview() {
     </div>
   )
 }
+

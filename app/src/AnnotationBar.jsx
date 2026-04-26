@@ -34,7 +34,7 @@ export default function AnnotationBar() {
             aria-label="Pen tool"
             aria-pressed={annotationTool === 'pen'}
           >
-            <div className={(annotationTool === 'pen' ? 'bg-[#7700FF]' : 'bg-transparent hover:bg-[#232323]') + ' rounded-full w-[34px] h-[34px] grid place-items-center'}>
+            <div className={(annotationTool === 'pen' ? 'bg-[#307b52]' : 'bg-transparent hover:bg-[#232323]') + ' rounded-full w-[34px] h-[34px] grid place-items-center'}>
               <PenLine size={16} className="text-white" />
             </div>
           </button>
@@ -52,7 +52,7 @@ export default function AnnotationBar() {
             aria-label="Text tool"
             aria-pressed={annotationTool === 'text'}
           >
-            <div className={(annotationTool === 'text' ? 'bg-[#7700FF]' : 'bg-transparent hover:bg-[#232323]') + ' rounded-full w-[34px] h-[34px] grid place-items-center'}>
+            <div className={(annotationTool === 'text' ? 'bg-[#307b52]' : 'bg-transparent hover:bg-[#232323]') + ' rounded-full w-[34px] h-[34px] grid place-items-center'}>
               <Type size={16} className="text-white" />
             </div>
           </button>
@@ -70,7 +70,7 @@ export default function AnnotationBar() {
             aria-label="Arrow tool"
             aria-pressed={annotationTool === 'arrow'}
           >
-            <div className={(annotationTool === 'arrow' ? 'bg-[#7700FF]' : 'bg-transparent hover:bg-[#232323]') + ' rounded-full w-[34px] h-[34px] grid place-items-center'}>
+            <div className={(annotationTool === 'arrow' ? 'bg-[#307b52]' : 'bg-transparent hover:bg-[#232323]') + ' rounded-full w-[34px] h-[34px] grid place-items-center'}>
               <ArrowUpRight size={16} className="text-white" />
             </div>
           </button>
@@ -88,7 +88,7 @@ export default function AnnotationBar() {
             aria-label="Shape tool"
             aria-pressed={annotationTool === 'shape'}
           >
-            <div className={(annotationTool === 'shape' ? 'bg-[#7700FF]' : 'bg-transparent hover:bg-[#232323]') + ' rounded-full w-[34px] h-[34px] grid place-items-center'}>
+            <div className={(annotationTool === 'shape' ? 'bg-[#307b52]' : 'bg-transparent hover:bg-[#232323]') + ' rounded-full w-[34px] h-[34px] grid place-items-center'}>
               {shapeMode === 'ellipse' ? <Circle size={16} className="text-white" /> : <Square size={16} className="text-white" />}
             </div>
           </button>
@@ -116,7 +116,7 @@ export default function AnnotationBar() {
                   aria-label="Rectangle"
                   aria-pressed={shapeMode === 'rect'}
                 >
-                  <div className={(shapeMode === 'rect' ? 'bg-[#7700FF]' : 'bg-transparent hover:bg-[#232323]') + ' rounded-[6px] px-[6px] py-[7px] transition-colors'}>
+                  <div className={(shapeMode === 'rect' ? 'bg-[#307b52]' : 'bg-transparent hover:bg-[#232323]') + ' rounded-[6px] px-[6px] py-[7px] transition-colors'}>
                     <Square size={14} className="text-white" />
                   </div>
                 </button>
@@ -133,7 +133,7 @@ export default function AnnotationBar() {
                   aria-label="Ellipse"
                   aria-pressed={shapeMode === 'ellipse'}
                 >
-                  <div className={(shapeMode === 'ellipse' ? 'bg-[#7700FF]' : 'bg-transparent hover:bg-[#232323]') + ' rounded-[6px] px-[6px] py-[7px] transition-colors'}>
+                  <div className={(shapeMode === 'ellipse' ? 'bg-[#307b52]' : 'bg-transparent hover:bg-[#232323]') + ' rounded-[6px] px-[6px] py-[7px] transition-colors'}>
                     <Circle size={14} className="text-white" />
                   </div>
                 </button>
@@ -154,7 +154,7 @@ export default function AnnotationBar() {
             aria-label="Circle label"
             aria-pressed={annotationTool === 'circle1'}
           >
-            <div className={(annotationTool === 'circle1' ? 'bg-[#7700FF]' : 'bg-transparent hover:bg-[#232323]') + ' rounded-full w-[34px] h-[34px] grid place-items-center'}>
+            <div className={(annotationTool === 'circle1' ? 'bg-[#307b52]' : 'bg-transparent hover:bg-[#232323]') + ' rounded-full w-[34px] h-[34px] grid place-items-center'}>
               <CircleOneIcon size={16} />
             </div>
           </button>
@@ -192,3 +192,4 @@ export default function AnnotationBar() {
     </motion.div>
   )
 }
+

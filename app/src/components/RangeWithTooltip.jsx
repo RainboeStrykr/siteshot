@@ -66,7 +66,7 @@ export function RangeWithTooltip({
     const percentForValue = (v) => clampPercent(((v - min) / safeRange) * 100)
 
     const trackColor = "#2C2C2C"
-    const fillColor = "#7700FF"
+    const fillColor = "#307b52"
 
     const originValue = origin ?? min
     const valuePercent = percentForValue(value)
@@ -118,3 +118,4 @@ export function RangeWithTooltip({
     </div>
   )
 }
+

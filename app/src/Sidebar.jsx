@@ -251,7 +251,7 @@ export default function LeftSidebar() {
                   setSelectedSystemWallpaper(null);
                   setBackgroundSelection({ type: 'gradient', gradient: nextCustom, gradientPresetId: null, blobGradient: null, wallpaper: null, color: null });
                 }}
-                className="flex-1 min-w-0 h-[3px] accent-[#7700FF] cursor-pointer"
+                className="flex-1 min-w-0 h-[3px] accent-[#307b52] cursor-pointer"
                 aria-label="Gradient angle"
               />
               <input
@@ -760,4 +760,5 @@ export default function LeftSidebar() {
     </motion.div>
   )
 }
+
 

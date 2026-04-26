@@ -127,7 +127,7 @@ html.platform-windows .siteshot-panel {
 }
 
 .siteshot-toast[data-variant="success"] {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(119, 0, 255, 0.35);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(48, 123, 82, 0.35);
 }
 
 .siteshot-toast[data-variant="error"] {
@@ -135,7 +135,7 @@ html.platform-windows .siteshot-panel {
 }
 
 input[type="checkbox"] {
-  accent-color: #7700FF;
+  accent-color: #307b52;
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -187,7 +187,7 @@ input.annotation-color::-moz-color-swatch {
   border-radius: 1rem;
   font-weight: 500;
   transition: all 200ms ease;
-  background: #7700FF;
+  background: #307b52;
   box-shadow: 0 12px 30px rgba(0,0,0,0.35);
 }
 .based-button-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
@@ -264,4 +264,5 @@ input.annotation-color::-moz-color-swatch {
   padding: 6px 10px;
   font-size: 13px;
 }
+
 

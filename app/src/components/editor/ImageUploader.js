@@ -197,7 +197,7 @@ const ImageUploader = ({ onPaste, shortcuts }) => {
               type="button"
               onClick={handleCapture}
               disabled={loading}
-              className="w-full py-2 rounded-lg text-sm font-medium text-white bg-[#7700FF] hover:bg-[#6600e0] disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
+              className="w-full py-2 rounded-lg text-sm font-medium text-white bg-[#307b52] hover:bg-[#256642] disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
             >
               {loading ? (
                 <>
@@ -218,3 +218,4 @@ const ImageUploader = ({ onPaste, shortcuts }) => {
 };
 
 export default ImageUploader;
+

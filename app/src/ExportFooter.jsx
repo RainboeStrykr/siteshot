@@ -61,7 +61,7 @@ export default function ExportFooter() {
                       key={s}
                       type="button"
                       className={'flex-1 h-[28px] rounded-[5px] text-[11px] font-inter font-light transition-colors ' +
-                        (exportScale === s ? 'bg-[#7700FF] text-white' : 'bg-[#2C2C2C] text-white/70 hover:bg-[#383838]')
+                        (exportScale === s ? 'bg-[#307b52] text-white' : 'bg-[#2C2C2C] text-white/70 hover:bg-[#383838]')
                       }
                       onClick={() => setExportScale(s)}
                     >
@@ -80,7 +80,7 @@ export default function ExportFooter() {
                       key={f}
                       type="button"
                       className={'flex-1 h-[28px] rounded-[5px] text-[11px] font-inter font-light transition-colors ' +
-                        (exportFormat === f ? 'bg-[#7700FF] text-white' : 'bg-[#2C2C2C] text-white/70 hover:bg-[#383838]')
+                        (exportFormat === f ? 'bg-[#307b52] text-white' : 'bg-[#2C2C2C] text-white/70 hover:bg-[#383838]')
                       }
                       onClick={() => setExportFormat(f)}
                     >
@@ -124,7 +124,7 @@ export default function ExportFooter() {
       </Button>
       <Button
         data-siteshot-react-wired="1"
-        className={'siteshot-footer-btn bg-[#7700FF] font-inter font-light text-white w-[124px] hover:bg-[#6600e0] ' + (exportBusy ? 'opacity-60 cursor-not-allowed' : '')}
+        className={'siteshot-footer-btn bg-[#307b52] font-inter font-light text-white w-[124px] hover:bg-[#256642] ' + (exportBusy ? 'opacity-60 cursor-not-allowed' : '')}
         disabled={exportBusy}
         onClick={saveOutput}
       >
@@ -146,4 +146,5 @@ export default function ExportFooter() {
     </motion.div>
   )
 }
+
 

@@ -49,7 +49,7 @@ export default function PresetSaveDialog() {
             autoFocus
             type="text"
             placeholder="My preset"
-            className="w-full h-[36px] bg-[#232323] rounded-[8px] text-[13px] font-inter font-light text-white px-3 border border-white/[0.08] outline-none focus:border-[#7700FF] transition-colors placeholder:text-white/25"
+            className="w-full h-[36px] bg-[#232323] rounded-[8px] text-[13px] font-inter font-light text-white px-3 border border-white/[0.08] outline-none focus:border-[#307b52] transition-colors placeholder:text-white/25"
             value={presetNameDraft}
             onChange={(e) => setPresetNameDraft(e.target.value)}
             onKeyDown={(e) => {
@@ -68,7 +68,7 @@ export default function PresetSaveDialog() {
             </Button>
             <Button
               size="sm"
-              className="h-[32px] px-4 text-[12px] font-inter font-medium text-white rounded-[8px] bg-[#7700FF] hover:bg-[#8a1aff] disabled:opacity-40"
+              className="h-[32px] px-4 text-[12px] font-inter font-medium text-white rounded-[8px] bg-[#307b52] hover:bg-[#256642] disabled:opacity-40"
               disabled={!presetNameDraft.trim()}
               onClick={save}
             >
@@ -81,4 +81,5 @@ export default function PresetSaveDialog() {
     </AnimatePresence>
   )
 }
+
 

@@ -123,7 +123,7 @@ export default function WebsiteScreenshotInput() {
           onClick={handleCapture}
           disabled={loading}
           aria-label="Capture screenshot"
-          className="shrink-0 h-[28px] px-3 rounded-[6px] bg-[#7700FF] hover:bg-[#6600e0] disabled:opacity-50 text-[11px] font-inter font-light text-white"
+          className="shrink-0 h-[28px] px-3 rounded-[6px] bg-[#307b52] hover:bg-[#256642] disabled:opacity-50 text-[11px] font-inter font-light text-white"
         >
           {loading ? (
             <span className="flex items-center gap-1">
@@ -139,3 +139,4 @@ export default function WebsiteScreenshotInput() {
     </div>
   )
 }
+
