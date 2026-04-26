@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion'
-import { ChevronDown, RotateCcw } from 'lucide-react'
+import { ChevronDown, RotateCcw, Check, ChevronsUpDown } from 'lucide-react'
 import { RangeWithTooltip } from '@/components/RangeWithTooltip'
 import { useAppContext } from './AppContext'
 import { AspectRatioDropdown } from './AppHelpers'
@@ -10,6 +10,10 @@ import hugShadowThumb from './assets/Hugshadowthumb.png'
 import heavyShadowThumb from './assets/Heavyshadowthumb.png'
 import ambientShadowThumb from './assets/Ambientshadowthumb.png'
 import customShadowThumb from './assets/customshadowthumb.png'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { Command, CommandEmpty, CommandGroup, CommandItem, CommandList } from '@/components/ui/command'
+import { cn } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
 
 const SLIDER_W = 'w-[128px]'
 
@@ -106,6 +110,8 @@ export default function LeftSidebar() {
   } = useAppContext()
 
   const topPaddingPx = 16
+  const [comboboxOpen, setComboboxOpen] = useState(false)
+  const [backgroundSelected, setBackgroundSelected] = useState(false)
 
   return (
     <motion.div
@@ -125,51 +131,63 @@ export default function LeftSidebar() {
         style={{ display: 'none' }}
         onChange={onCustomWallpaperPicked}
       />
-      <button
-        type="button"
-        className="w-full bg-[#2C2C2C] rounded-[5px] text-xs font-inter font-light text-white cursor-pointer self-center py-[7px]"
+      <Button
+        variant="secondary"
+        className="w-full bg-[#2C2C2C] hover:bg-[#383838] rounded-[5px] text-xs font-inter font-light text-white cursor-pointer self-center py-[7px] h-auto"
         onClick={triggerUploadCustomWallpaper}
       >
         Upload custom background
-      </button>
+      </Button>
 
-      <LayoutGroup>
-        <div className="mt-3 w-full rounded-[8px] bg-[#141414] p-[2px] flex gap-[2px]">
-          {wallpaperTabs.map((t) => {
-            const isActive = wallpaperType === t.id;
-            const isPressed = pressedWallpaperTab === t.id;
-            return (
-              <button
-                key={t.id}
-                type="button"
-                onPointerDown={() => setPressedWallpaperTab(t.id)}
-                onPointerUp={() => setWallpaperTypeOnRelease(t.id)}
-                onPointerCancel={() => setPressedWallpaperTab(null)}
-                onPointerLeave={() => setPressedWallpaperTab(null)}
-                onClick={() => setWallpaperTypeOnClick(t.id)}
-                className={
-                  "relative flex-1 rounded-[6px] px-2 py-[6px] text-[11px] font-inter font-light transition-colors " +
-                  (isActive
-                    ? 'text-white'
-                    : 'text-[#bdbdbd]') +
-                  (isPressed && !isActive ? ' bg-[#232323]' : '')
-                }
-                style={isActive ? { backgroundColor: 'transparent' } : undefined}
-              >
-                {isActive && (
-                  <motion.div
-                    layoutId="wallpaper-switch-pill"
-                    className="absolute inset-0 rounded-[6px]"
-                    style={{ backgroundColor: activeWallpaperColor }}
-                    transition={{ type: 'spring', stiffness: 520, damping: 38, mass: 0.8 }}
-                  />
-                )}
-                <span className="relative z-10">{t.label}</span>
-              </button>
-            );
-          })}
-        </div>
-      </LayoutGroup>
+      <Popover open={comboboxOpen} onOpenChange={setComboboxOpen}>
+        <PopoverTrigger asChild>
+          <button
+            type="button"
+            role="combobox"
+            aria-expanded={comboboxOpen}
+            aria-label="Select background type"
+            className="mt-3 w-full flex items-center justify-between rounded-[8px] bg-[#141414] px-3 py-[7px] text-[11px] font-inter font-light text-white hover:bg-[#1a1a1a] transition-colors border border-white/[0.06]"
+          >
+            <span>{backgroundSelected ? (wallpaperTabs.find((t) => t.id === wallpaperType)?.label ?? 'Select background') : 'Select background'}</span>
+            <ChevronsUpDown className="w-3 h-3 text-white/40 shrink-0" />
+          </button>
+        </PopoverTrigger>
+        <PopoverContent
+          className="w-[230px] p-0 rounded-[10px] border border-white/10 bg-[#1c1c1c]"
+          style={{ boxShadow: '0 8px 30px rgba(0,0,0,0.5)' }}
+          align="start"
+        >
+          <Command className="bg-[#1c1c1c]">
+            <CommandList>
+              <CommandEmpty className="text-[11px] text-white/40 py-3 text-center">No options.</CommandEmpty>
+              <CommandGroup className="p-1">
+                {wallpaperTabs.map((t) => (
+                  <CommandItem
+                    key={t.id}
+                    value={t.id}
+                    onSelect={() => {
+                      setWallpaperTypeOnClick(t.id)
+                      setBackgroundSelected(true)
+                      setComboboxOpen(false)
+                    }}
+                    className={cn(
+                      'flex items-center justify-between text-[12px] font-inter font-light rounded-[7px] px-3 py-2 cursor-pointer',
+                      wallpaperType === t.id
+                        ? 'text-white bg-white/10'
+                        : 'text-white/70 hover:text-white hover:bg-white/[0.06]'
+                    )}
+                  >
+                    {t.label}
+                    {wallpaperType === t.id && (
+                      <Check className="w-3.5 h-3.5 text-[#307b52] shrink-0" />
+                    )}
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            </CommandList>
+          </Command>
+        </PopoverContent>
+      </Popover>
       <div className="text-xs font-inter font-light text-white mt-3">
         {currentWallpaperGroup.title}
       </div>
