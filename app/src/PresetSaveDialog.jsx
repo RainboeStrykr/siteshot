@@ -2,6 +2,7 @@
 import React from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useAppContext } from './AppContext'
+import { Button } from '@/components/ui/button'
 
 export default function PresetSaveDialog() {
   const {
@@ -57,21 +58,22 @@ export default function PresetSaveDialog() {
             }}
           />
           <div className="flex justify-end gap-2">
-            <button
-              type="button"
-              className="h-[32px] px-4 text-[12px] font-inter font-light text-white/70 rounded-[8px] hover:bg-white/[0.06] transition-colors"
+            <Button
+              variant="ghost"
+              size="sm"
+              className="h-[32px] px-4 text-[12px] font-inter font-light text-white/70 hover:bg-white/[0.06] hover:text-white/90 rounded-[8px]"
               onClick={() => setPresetNamePromptOpen(false)}
             >
               Cancel
-            </button>
-            <button
-              type="button"
-              className="h-[32px] px-4 text-[12px] font-inter font-medium text-white rounded-[8px] bg-[#7700FF] hover:bg-[#8a1aff] transition-colors disabled:opacity-40"
+            </Button>
+            <Button
+              size="sm"
+              className="h-[32px] px-4 text-[12px] font-inter font-medium text-white rounded-[8px] bg-[#7700FF] hover:bg-[#8a1aff] disabled:opacity-40"
               disabled={!presetNameDraft.trim()}
               onClick={save}
             >
               Save
-            </button>
+            </Button>
           </div>
         </motion.div>
       </motion.div>

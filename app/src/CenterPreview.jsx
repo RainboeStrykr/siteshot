@@ -2,6 +2,7 @@ import React, { useCallback, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import ImageDisplay from './components/editor/ImageDisplay.jsx'
 import { useAppContext } from './AppContext.jsx'
+import { Button } from '@/components/ui/button'
 
 const SCREENSHOTAPI_ENDPOINT = 'https://api.screenshotapi.com/take'
 const API_KEY = import.meta.env.VITE_SCREENSHOTAPI_KEY
@@ -210,28 +211,30 @@ export default function CenterPreview() {
           >
             {/* Tab switcher */}
             <div className="flex gap-1 p-2 mx-auto w-fit mt-6">
-              <button
-                type="button"
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => setTab('upload')}
-                className={`px-5 py-1.5 rounded-full text-sm font-inter font-light transition-colors ${
+                className={`px-5 py-1.5 rounded-full text-sm font-inter font-light transition-colors h-auto ${
                   tab === 'upload'
-                    ? 'bg-white/10 text-white'
-                    : 'text-white/40 hover:text-white/70'
+                    ? 'bg-white/10 text-white hover:bg-white/15'
+                    : 'text-white/40 hover:text-white/70 hover:bg-transparent'
                 }`}
               >
                 Upload
-              </button>
-              <button
-                type="button"
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => setTab('url')}
-                className={`px-5 py-1.5 rounded-full text-sm font-inter font-light transition-colors ${
+                className={`px-5 py-1.5 rounded-full text-sm font-inter font-light transition-colors h-auto ${
                   tab === 'url'
-                    ? 'bg-white/10 text-white'
-                    : 'text-white/40 hover:text-white/70'
+                    ? 'bg-white/10 text-white hover:bg-white/15'
+                    : 'text-white/40 hover:text-white/70 hover:bg-transparent'
                 }`}
               >
                 From URL
-              </button>
+              </Button>
             </div>
 
             {/* Upload tab */}
@@ -251,13 +254,17 @@ export default function CenterPreview() {
                   <p className="text-[18px] font-inter font-light text-white/90">Drop a screenshot here</p>
                   <p className="text-[13px] font-inter font-light text-white/45">or click to browse — PNG, JPG, WebP, GIF supported</p>
                 </div>
-                <motion.div
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="siteshot-footer-btn bg-[#7700FF] font-inter font-light text-white shadow-[0_12px_28px_rgba(119,0,255,0.35)] pointer-events-none"
-                >
-                  Upload screenshot
-                </motion.div>
+                  <motion.div
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
+                  >
+                    <Button
+                      className="siteshot-footer-btn bg-[#7700FF] font-inter font-light text-white shadow-[0_12px_28px_rgba(119,0,255,0.35)] hover:bg-[#6600e0] pointer-events-none"
+                      tabIndex={-1}
+                    >
+                      Upload screenshot
+                    </Button>
+                  </motion.div>
               </label>
             )}
 
@@ -287,24 +294,28 @@ export default function CenterPreview() {
                     spellCheck={false}
                     className="flex-1 min-w-0 h-[42px] px-4 rounded-[12px] bg-[#1a1a1a] border border-white/10 text-sm font-inter font-light text-white placeholder:text-white/30 outline-none focus:border-[#7700FF]/60 transition-colors disabled:opacity-50"
                   />
-                  <motion.button
-                    type="button"
-                    onClick={handleCapture}
-                    disabled={capturing}
+                  <motion.div
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
-                    className="h-[42px] px-5 rounded-[12px] bg-[#7700FF] hover:bg-[#6600e0] disabled:opacity-50 disabled:cursor-not-allowed text-sm font-inter font-light text-white shadow-[0_12px_28px_rgba(119,0,255,0.35)] transition-colors flex items-center gap-2 shrink-0"
+                    className="shrink-0"
                   >
-                    {capturing ? (
-                      <>
-                        <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
-                        </svg>
-                        Capturing…
-                      </>
-                    ) : 'Capture'}
-                  </motion.button>
+                    <Button
+                      onClick={handleCapture}
+                      disabled={capturing}
+                      aria-label="Capture screenshot"
+                      className="h-[42px] px-5 rounded-[12px] bg-[#7700FF] hover:bg-[#6600e0] disabled:opacity-50 text-sm font-inter font-light text-white shadow-[0_12px_28px_rgba(119,0,255,0.35)]"
+                    >
+                      {capturing ? (
+                        <>
+                          <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+                          </svg>
+                          Capturing…
+                        </>
+                      ) : 'Capture'}
+                    </Button>
+                  </motion.div>
                 </div>
               </div>
             )}

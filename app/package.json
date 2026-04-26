@@ -11,12 +11,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@radix-ui/react-menubar": "^1.1.16",
+    "@radix-ui/react-select": "^2.2.6",
+    "@radix-ui/react-slot": "^1.2.4",
     "@radix-ui/react-tooltip": "^1.2.8",
-    "dom-to-image": "^2.6.0",
-    
     "class-variance-authority": "^0.7.1",
     "classnames": "^2.3.1",
     "clsx": "^2.1.1",
+    "dom-to-image": "^2.6.0",
     "fast-average-color": "^9.5.0",
     "framer-motion": "^11.0.0",
     "hotkeys-js": "3.13.15",

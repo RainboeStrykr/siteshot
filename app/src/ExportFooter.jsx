@@ -3,6 +3,7 @@ import React from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronDown, Trash2 } from 'lucide-react'
 import { useAppContext } from './AppContext'
+import { Button } from '@/components/ui/button'
 
 export default function ExportFooter() {
   const {
@@ -27,10 +28,10 @@ export default function ExportFooter() {
     >
       {/* Export settings drawer */}
       <div className="relative" ref={exportDrawerRef}>
-        <button
-          type="button"
+        <Button
+          variant="secondary"
           data-siteshot-react-wired="1"
-          className="siteshot-footer-btn bg-[#2C2C2C] text-[13px] font-inter font-light text-white gap-1.5 w-[124px]"
+          className="siteshot-footer-btn bg-[#2C2C2C] text-[13px] font-inter font-light text-white gap-1.5 w-[124px] hover:bg-[#383838]"
           disabled={exportBusy}
           onClick={() => setExportDrawerOpen((prev) => !prev)}
           title="Export settings"
@@ -39,7 +40,7 @@ export default function ExportFooter() {
           <span className="text-white/40">•</span>
           <span>{exportFormat.toUpperCase()}</span>
           <ChevronDown size={14} className={'text-white/60 transition-transform ' + (exportDrawerOpen ? 'rotate-180' : '')} />
-        </button>
+        </Button>
 
         <AnimatePresence>
           {exportDrawerOpen && (
@@ -112,36 +113,36 @@ export default function ExportFooter() {
         </AnimatePresence>
       </div>
 
-      <button
-        type="button"
+      <Button
+        variant="secondary"
         data-siteshot-react-wired="1"
-        className={'siteshot-footer-btn bg-[#2C2C2C] font-inter font-light text-white w-[124px] ' + (exportBusy ? 'opacity-60 cursor-not-allowed' : '')}
+        className={'siteshot-footer-btn bg-[#2C2C2C] font-inter font-light text-white w-[124px] hover:bg-[#383838] ' + (exportBusy ? 'opacity-60 cursor-not-allowed' : '')}
         disabled={exportBusy}
         onClick={copyOutput}
       >
         Copy
-      </button>
-      <button
-        type="button"
+      </Button>
+      <Button
         data-siteshot-react-wired="1"
-        className={'siteshot-footer-btn bg-[#7700FF] font-inter font-light text-white w-[124px] ' + (exportBusy ? 'opacity-60 cursor-not-allowed' : '')}
+        className={'siteshot-footer-btn bg-[#7700FF] font-inter font-light text-white w-[124px] hover:bg-[#6600e0] ' + (exportBusy ? 'opacity-60 cursor-not-allowed' : '')}
         disabled={exportBusy}
         onClick={saveOutput}
       >
         Save
-      </button>
+      </Button>
 
       {/* Bin: clear screenshot and revert to upload zone */}
-      <button
-        type="button"
+      <Button
+        variant="secondary"
+        size="icon"
         data-siteshot-react-wired="1"
-        className="siteshot-footer-btn bg-[#2C2C2C] text-white/70 !w-[24px] !p-0"
+        className="siteshot-footer-btn bg-[#2C2C2C] text-white/70 !w-[34px] !h-[34px] hover:bg-[#383838] hover:text-white"
         onClick={resetCanvas}
         title="Clear — discard screenshot and return to upload zone"
         aria-label="Clear canvas"
       >
         <Trash2 size={13} />
-      </button>
+      </Button>
     </motion.div>
   )
 }

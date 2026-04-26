@@ -2,8 +2,22 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import ImageDisplay from '../ImageDisplay.jsx';
 import ImageUploader from '../ImageUploader.js';
 import { SaveIcon, ClipboardIcon, FeedbackIcon } from '@/assets/icons.jsx';
-import { Check, PenLine, RotateCcw, SlidersHorizontal, TextCursorInput } from 'lucide-react';
+import { Check, PenLine, RotateCcw, SlidersHorizontal, TextCursorInput, Palette } from 'lucide-react';
 import { useI18n } from '../../context/I18nContext.js';
+import {
+  Menubar,
+  MenubarMenu,
+  MenubarTrigger,
+  MenubarContent,
+  MenubarItem,
+  MenubarSeparator,
+  MenubarLabel,
+} from '@/components/ui/menubar';
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '@/components/ui/tooltip';
 
 export default function MainCanvasArea({
   isTauri,
@@ -384,73 +398,112 @@ export default function MainCanvasArea({
         </div>
       </div>
 
-      {/* Top tools (pen/text) */}
+      {/* Annotation tools dock */}
       <div
         data-tour="annot-tools"
         data-editor-ui
-        className={`absolute top-4 left-0 right-0 flex flex-row items-center justify-center gap-2 window-drag-region`}
+        className="absolute top-4 left-0 right-0 flex flex-row items-center justify-center window-drag-region"
         style={{ zIndex: 20 }}
       >
-        <div
-          className="flex items-center gap-2 window-no-drag"
-          style={{
-            background: 'var(--panel-bg)',
-            border: 'none',
-            boxShadow: 'none',
-            borderRadius: 9999,
-            padding: '6px 8px',
-          }}
+        <div className="window-no-drag flex items-center gap-1 px-2 py-1.5 rounded-full"
+          style={{ background: 'var(--editor-pill-bg)', border: '1px solid var(--editor-pill-border)', boxShadow: 'var(--editor-pill-shadow)' }}
         >
-          <button
-            type="button"
-            className={`based-button-secondary annotation-tool-btn editor-pill-button ${activeAnnotTool === 'pen' ? 'annotation-tool-btn--active' : ''}`}
-            onClick={() => setActiveAnnotTool((prev) => (prev === 'pen' ? null : 'pen'))}
-            title={t('penTool')}
-            aria-label={t('penTool')}
-          >
-            <PenLine className="w-4 h-4" />
-          </button>
+          {/* Pen tool — uses Menubar for the color picker dropdown */}
+          <Menubar className="border-none shadow-none bg-transparent p-0 h-auto">
+            <MenubarMenu>
+              <Tooltip delayDuration={300}>
+                <TooltipTrigger asChild>
+                  <span className="inline-flex">
+                    <MenubarTrigger
+                      className={`annotation-tool-btn editor-pill-button rounded-[0.9rem] w-9 h-9 p-0 flex items-center justify-center cursor-pointer
+                        ${activeAnnotTool === 'pen' ? 'annotation-tool-btn--active' : ''}`}
+                      onClick={() => setActiveAnnotTool((prev) => (prev === 'pen' ? null : 'pen'))}
+                      aria-label={t('penTool')}
+                      aria-pressed={activeAnnotTool === 'pen'}
+                    >
+                      <PenLine className="w-4 h-4" />
+                    </MenubarTrigger>
+                  </span>
+                </TooltipTrigger>
+                <TooltipContent side="bottom" sideOffset={6}>{t('penTool')}</TooltipContent>
+              </Tooltip>
+              <MenubarContent
+                className="min-w-[160px]"
+                style={{
+                  background: 'var(--editor-pill-bg)',
+                  border: '1px solid var(--editor-pill-border)',
+                  boxShadow: 'var(--editor-pill-shadow)',
+                  color: 'var(--app-fg)',
+                }}
+              >
+                <MenubarLabel className="text-[11px] text-[color:var(--app-muted)]">
+                  {t('penColor')}
+                </MenubarLabel>
+                <MenubarSeparator />
+                <MenubarItem
+                  className="gap-3 cursor-pointer focus:bg-white/10"
+                  onSelect={(e) => e.preventDefault()}
+                >
+                  <Palette className="w-4 h-4 opacity-70" />
+                  <div className="flex items-center gap-2 flex-1">
+                    <div
+                      className="w-5 h-5 rounded-full border border-white/20 shrink-0"
+                      style={{ background: options?.pen?.color || '#FFFFFF' }}
+                    />
+                    <input
+                      type="color"
+                      value={options?.pen?.color || '#FFFFFF'}
+                      className="annotation-color-input w-full h-5 cursor-pointer"
+                      onChange={(e) =>
+                        setOptions((prev) => ({
+                          ...prev,
+                          pen: { ...(prev.pen || {}), color: e.target.value },
+                        }))
+                      }
+                      title={t('penColor')}
+                    />
+                  </div>
+                </MenubarItem>
+              </MenubarContent>
+            </MenubarMenu>
+          </Menubar>
 
-          {activeAnnotTool === 'pen' && (
-            <div className="flex items-center gap-2 px-2 py-1 rounded-full" style={{ background: 'var(--editor-pill-bg)', border: '1px solid var(--editor-pill-border)' }}>
-              <span className="text-[11px] text-[color:var(--app-muted)]">{t('penColor')}</span>
-              <input
-                type="color"
-                value={options?.pen?.color || '#FFFFFF'}
-                className="annotation-color-input"
-                onChange={(e) =>
-                  setOptions((prev) => ({
-                    ...prev,
-                    pen: { ...(prev.pen || {}), color: e.target.value },
-                  }))
-                }
-                title={t('penColor')}
-              />
-            </div>
-          )}
-
-          <button
-            type="button"
-            className={`based-button-secondary annotation-tool-btn editor-pill-button ${activeAnnotTool === 'text' ? 'annotation-tool-btn--active' : ''}`}
-            onClick={() => setActiveAnnotTool((prev) => (prev === 'text' ? null : 'text'))}
-            title={t('textTool')}
-            aria-label={t('textTool')}
-          >
-            <TextCursorInput className="w-4 h-4" />
-          </button>
+          {/* Text tool */}
+          <Tooltip delayDuration={300}>
+            <TooltipTrigger asChild>
+              <button
+                type="button"
+                className={`annotation-tool-btn editor-pill-button rounded-[0.9rem] w-9 h-9 p-0 flex items-center justify-center cursor-pointer
+                  ${activeAnnotTool === 'text' ? 'annotation-tool-btn--active' : ''}`}
+                onClick={() => setActiveAnnotTool((prev) => (prev === 'text' ? null : 'text'))}
+                aria-label={t('textTool')}
+                aria-pressed={activeAnnotTool === 'text'}
+              >
+                <TextCursorInput className="w-4 h-4" />
+              </button>
+            </TooltipTrigger>
+            <TooltipContent side="bottom" sideOffset={6}>{t('textTool')}</TooltipContent>
+          </Tooltip>
 
           <div className="w-px h-6 bg-white/10 mx-1" aria-hidden="true" />
 
-          <button
-            type="button"
-            className="based-button-secondary annotation-tool-btn editor-pill-button"
-            onClick={() => onReset?.()}
-            disabled={!blob?.src}
-            title={blob?.src ? t('resetCanvas') : t('noImageToReset')}
-            aria-label={t('resetCanvas')}
-          >
-            <RotateCcw className="w-4 h-4" />
-          </button>
+          {/* Reset */}
+          <Tooltip delayDuration={300}>
+            <TooltipTrigger asChild>
+              <button
+                type="button"
+                className="annotation-tool-btn editor-pill-button rounded-[0.9rem] w-9 h-9 p-0 flex items-center justify-center cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+                onClick={() => onReset?.()}
+                disabled={!blob?.src}
+                aria-label={t('resetCanvas')}
+              >
+                <RotateCcw className="w-4 h-4" />
+              </button>
+            </TooltipTrigger>
+            <TooltipContent side="bottom" sideOffset={6}>
+              {blob?.src ? t('resetCanvas') : t('noImageToReset')}
+            </TooltipContent>
+          </Tooltip>
         </div>
       </div>
 
