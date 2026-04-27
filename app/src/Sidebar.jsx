@@ -14,6 +14,16 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Command, CommandEmpty, CommandGroup, CommandItem, CommandList } from '@/components/ui/command'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import { Separator } from '@/components/ui/separator'
+import { Checkbox } from '@/components/ui/checkbox'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 
 const SLIDER_W = 'w-[128px]'
 
@@ -293,6 +303,8 @@ export default function LeftSidebar() {
         </div>
       )}
 
+      <Separator className="my-4 bg-white/10" />
+
       <AspectRatioDropdown ratioChoice={ratioChoice} setRatioChoice={setRatioChoice} />
 
       <AnimatePresence>
@@ -358,18 +370,17 @@ export default function LeftSidebar() {
         />
       </div>
       <div className="flex items-center mt-3">
-        <input
-          type="checkbox"
+        <Checkbox
           id="autocrop"
-          className="mr-2"
           checked={autoCropEnabled}
-          onChange={(e) => setAutoCropEnabled(!!e.target.checked)}
+          onCheckedChange={setAutoCropEnabled}
+          className="mr-2"
         />
-        <label htmlFor="autocrop" className="text-xs font-inter font-light text-white cursor-pointer">AutoCrop</label>
+        <label htmlFor="autocrop" className="text-xs font-inter font-light text-white cursor-pointer">Autocrop your screenshot</label>
       </div>
-      <div className="text-xs font-inter font-light text-[#757575] pl-5 mt-0.5">
-        Auto crop your screenshots
-      </div>
+
+      <Separator className="my-4 bg-white/10" />
+
       <div className="text-xs font-inter font-light text-white mt-3">
         Shadow style
       </div>
@@ -473,6 +484,7 @@ export default function LeftSidebar() {
           </div>
         </div>
       )}
+
       <div className="flex justify-between items-center mt-3">
         <div className="text-xs font-inter font-light text-white">Curve</div>
         <RangeWithTooltip
@@ -505,6 +517,9 @@ export default function LeftSidebar() {
           aria-label="Border color"
         />
       </div>
+
+      <Separator className="my-4 bg-white/10" />
+
       <div className="flex items-center justify-between mt-3">
         <div className="text-xs font-inter font-light text-white">OS Mockup</div>
         <button
@@ -567,33 +582,50 @@ export default function LeftSidebar() {
           formatValue={(v) => `${Number(v || 1).toFixed(1)}x`}
         />
       </div>
+
+      <Separator className="my-4 bg-white/10" />
+
       <div className="flex items-center mt-3">
-        <input
-          type="checkbox"
+        <Checkbox
           id="show-watermark"
-          className="mr-2"
           checked={watermarkEnabled}
-          onChange={(e) => setWatermarkEnabled(!!e.target.checked)}
+          onCheckedChange={setWatermarkEnabled}
+          className="mr-2"
         />
         <label htmlFor="show-watermark" className="text-xs font-inter font-light text-white cursor-pointer">Show watermark</label>
       </div>
       <div className="flex justify-between items-center mt-3">
         <div className="text-xs font-inter font-light text-white">Position:</div>
-        <div className="relative">
-          <select className="bg-[#2C2C2C] rounded-[4.5px] text-xs font-inter font-light text-white pl-2 pr-8 py-1 appearance-none" value={watermarkPosition} onChange={(e) => setWatermarkPosition(e.target.value)}>
-            <option value="inside">Inside screenshot</option>
-            <option value="center-bottom">Below screenshot</option>
-            <option value="top-left">Top left</option>
-            <option value="top-right">Top right</option>
-            <option value="center-top">Top center</option>
-            <option value="bottom-left">Bottom left</option>
-            <option value="bottom-right">Bottom right</option>
-            <option value="center-bottom">Bottom center</option>
-          </select>
-          <div className="pointer-events-none absolute inset-y-0 right-2 flex items-center">
-            <ChevronDown size={20} className="text-white" />
-          </div>
-        </div>
+        <Select value={watermarkPosition} onValueChange={setWatermarkPosition}>
+          <SelectTrigger
+            className="w-[160px] h-[28px] bg-[#2C2C2C] border-none text-xs font-inter font-light text-white rounded-[4.5px] px-2 focus:ring-0 focus:ring-offset-0 hover:bg-[#383838] transition-colors"
+            aria-label="Watermark position"
+          >
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent
+            className="rounded-[8px] border border-white/10 bg-[#1c1c1c]"
+            style={{ boxShadow: '0 8px 30px rgba(0,0,0,0.5)' }}
+          >
+            {[
+              { value: 'inside',        label: 'Inside screenshot' },
+              { value: 'center-bottom', label: 'Below screenshot'  },
+              { value: 'top-left',      label: 'Top left'          },
+              { value: 'top-right',     label: 'Top right'         },
+              { value: 'center-top',    label: 'Top center'        },
+              { value: 'bottom-left',   label: 'Bottom left'       },
+              { value: 'bottom-right',  label: 'Bottom right'      },
+            ].map(({ value, label }) => (
+              <SelectItem
+                key={value}
+                value={value}
+                className="text-xs font-inter font-light text-white/80 focus:bg-white/10 focus:text-white cursor-pointer"
+              >
+                {label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
       <input
         type="text"
@@ -602,70 +634,49 @@ export default function LeftSidebar() {
         className="w-full mt-3 bg-[#2C2C2C] rounded-[4.5px] text-xs font-inter font-light text-white px-2 py-1"
         placeholder="Made with SiteShot"
       />
-      <div className="mt-3 grid grid-cols-2 gap-2 py-2">
-        <div className="flex items-center">
-          <input
-            type="checkbox"
-            id="twitter-logo"
-            className="mr-2"
-            checked={watermarkPrefix === 'twitter'}
-            onChange={(e) => {
-              const on = !!e.target.checked;
-              const next = on ? 'twitter' : 'none';
-              setWatermarkPrefix(next);
-              setWatermarkShowTwitter(next === 'twitter');
-            }}
-          />
-          <label htmlFor="twitter-logo" className="text-xs font-inter font-light text-white cursor-pointer">Twitter logo</label>
-        </div>
-        <div className="flex items-center justify-end">
-          <input
-            type="checkbox"
-            id="email-logo"
-            className="mr-2"
-            checked={watermarkPrefix === 'mail'}
-            onChange={(e) => {
-              const on = !!e.target.checked;
-              const next = on ? 'mail' : 'none';
-              setWatermarkPrefix(next);
-              setWatermarkShowTwitter(next === 'twitter');
-            }}
-          />
-          <label htmlFor="email-logo" className="text-xs font-inter font-light text-white cursor-pointer">Email logo</label>
-        </div>
-        <div className="flex items-center">
-          <input
-            type="checkbox"
-            id="youtube-logo"
-            className="mr-2"
-            checked={watermarkPrefix === 'youtube'}
-            onChange={(e) => {
-              const on = !!e.target.checked;
-              const next = on ? 'youtube' : 'none';
-              setWatermarkPrefix(next);
-              setWatermarkShowTwitter(next === 'twitter');
-            }}
-          />
-          <label htmlFor="youtube-logo" className="text-xs font-inter font-light text-white cursor-pointer">Youtube logo</label>
-        </div>
-        <div className="flex items-center justify-end">
-          <input
-            type="checkbox"
-            id="checkmark"
-            className="mr-2"
-            checked={watermarkShowVerified}
-            onChange={(e) => setWatermarkShowVerified(!!e.target.checked)}
-          />
-          <label htmlFor="checkmark" className="text-xs font-inter font-light text-white cursor-pointer">Checkmark</label>
-        </div>
+      <div className="mt-3 py-2">
+        <div className="text-xs font-inter font-light text-white mb-2">Icon</div>
+        <RadioGroup 
+          value={watermarkPrefix} 
+          onValueChange={(value) => {
+            setWatermarkPrefix(value);
+            setWatermarkShowTwitter(value === 'twitter');
+            setWatermarkShowVerified(value === 'checkmark');
+          }}
+          className="grid grid-cols-2 gap-3"
+        >
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="none" id="no-logo" />
+            <label htmlFor="no-logo" className="text-xs font-inter font-light text-white cursor-pointer">None</label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="checkmark" id="checkmark-logo" />
+            <label htmlFor="checkmark-logo" className="text-xs font-inter font-light text-white cursor-pointer">Checkmark</label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="twitter" id="twitter-logo" />
+            <label htmlFor="twitter-logo" className="text-xs font-inter font-light text-white cursor-pointer">Twitter</label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="mail" id="email-logo" />
+            <label htmlFor="email-logo" className="text-xs font-inter font-light text-white cursor-pointer">Email</label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="youtube" id="youtube-logo" />
+            <label htmlFor="youtube-logo" className="text-xs font-inter font-light text-white cursor-pointer">Youtube</label>
+          </div>
+        </RadioGroup>
       </div>
+
+      <Separator className="my-4 bg-white/10" />
+
       <div className="mt-4 rounded-[10px] border border-white/10 bg-[#232323]/70 px-3 py-2">
         <button
           type="button"
           className="w-full flex justify-between items-center"
           onClick={() => setIsAdvancedOpen((prev) => !prev)}
         >
-          <div className="text-xs font-inter font-light text-white">More position settings</div>
+          <div className="text-xs font-inter font-light text-white">Position settings</div>
           <motion.div
             className="text-xs font-inter font-light text-white"
             animate={{ rotate: isAdvancedOpen ? 0 : -90 }}
