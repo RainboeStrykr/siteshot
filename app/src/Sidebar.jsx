@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { AnimatePresence, LayoutGroup, motion } from 'framer-motion'
-import { ChevronDown, RotateCcw, Check, ChevronsUpDown } from 'lucide-react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { RotateCcw, Check, ChevronsUpDown } from 'lucide-react'
 import { RangeWithTooltip } from '@/components/RangeWithTooltip'
 import { useAppContext } from './AppContext'
 import { AspectRatioDropdown } from './AppHelpers'
@@ -99,10 +99,6 @@ export default function LeftSidebar() {
     setWatermarkOffsetY,
     watermarkShowVerified,
     setWatermarkShowVerified,
-    watermarkShowTwitter,
-    setWatermarkShowTwitter,
-    isAdvancedOpen,
-    setIsAdvancedOpen,
     tiltX,
     setTiltX,
     draggingTiltX,
@@ -305,6 +301,7 @@ export default function LeftSidebar() {
 
       <Separator className="my-4 bg-white/10" />
 
+      <div className="text-xs font-inter font-light text-white mt-3">Aspect ratio</div>
       <AspectRatioDropdown ratioChoice={ratioChoice} setRatioChoice={setRatioChoice} />
 
       <AnimatePresence>
@@ -347,6 +344,7 @@ export default function LeftSidebar() {
         )}
       </AnimatePresence>
 
+      <div className="text-xs font-inter font-light text-white mt-3">Image adjustments</div>
       <div className="flex justify-between items-center mt-3">
         <div className="text-xs font-inter font-light text-white">Padding</div>
         <RangeWithTooltip
@@ -381,6 +379,7 @@ export default function LeftSidebar() {
 
       <Separator className="my-4 bg-white/10" />
 
+      <div className="text-xs font-inter font-light text-white mt-3">Styling</div>
       <div className="text-xs font-inter font-light text-white mt-3">
         Shadow style
       </div>
@@ -520,6 +519,7 @@ export default function LeftSidebar() {
 
       <Separator className="my-4 bg-white/10" />
 
+      <div className="text-xs font-inter font-light text-white mt-3">OS mockup & UI scale</div>
       <div className="flex items-center justify-between mt-3">
         <div className="text-xs font-inter font-light text-white">OS Mockup</div>
         <button
@@ -585,6 +585,7 @@ export default function LeftSidebar() {
 
       <Separator className="my-4 bg-white/10" />
 
+      <div className="text-xs font-inter font-light text-white mt-3">Watermark</div>
       <div className="flex items-center mt-3">
         <Checkbox
           id="show-watermark"
@@ -640,7 +641,6 @@ export default function LeftSidebar() {
           value={watermarkPrefix} 
           onValueChange={(value) => {
             setWatermarkPrefix(value);
-            setWatermarkShowTwitter(value === 'twitter');
             setWatermarkShowVerified(value === 'checkmark');
           }}
           className="grid grid-cols-2 gap-3"
@@ -652,10 +652,6 @@ export default function LeftSidebar() {
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="checkmark" id="checkmark-logo" />
             <label htmlFor="checkmark-logo" className="text-xs font-inter font-light text-white cursor-pointer">Checkmark</label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="twitter" id="twitter-logo" />
-            <label htmlFor="twitter-logo" className="text-xs font-inter font-light text-white cursor-pointer">Twitter</label>
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="mail" id="email-logo" />
@@ -670,122 +666,95 @@ export default function LeftSidebar() {
 
       <Separator className="my-4 bg-white/10" />
 
-      <div className="mt-4 rounded-[10px] border border-white/10 bg-[#232323]/70 px-3 py-2">
-        <button
-          type="button"
-          className="w-full flex justify-between items-center"
-          onClick={() => setIsAdvancedOpen((prev) => !prev)}
-        >
-          <div className="text-xs font-inter font-light text-white">Position settings</div>
-          <motion.div
-            className="text-xs font-inter font-light text-white"
-            animate={{ rotate: isAdvancedOpen ? 0 : -90 }}
-            transition={{ duration: 0.15 }}
-          >▾</motion.div>
-        </button>
+      <div className="text-xs font-inter font-light text-white mt-3">Position settings</div>
+      <div className="grid grid-cols-2 gap-3 mt-3">
+        <div>
+          <div className="text-xs font-inter font-light text-white mb-1">Watermark X</div>
+          <input
+            type="number"
+            className="w-full bg-[#2C2C2C] rounded-[4.5px] text-xs font-inter font-light text-white px-2 py-1"
+            value={watermarkOffsetX}
+            onChange={(e) => setWatermarkOffsetX(Number(e.target.value) || 0)}
+          />
+        </div>
+        <div>
+          <div className="text-xs font-inter font-light text-white mb-1">Watermark Y</div>
+          <input
+            type="number"
+            className="w-full bg-[#2C2C2C] rounded-[4.5px] text-xs font-inter font-light text-white px-2 py-1"
+            value={watermarkOffsetY}
+            onChange={(e) => setWatermarkOffsetY(Number(e.target.value) || 0)}
+          />
+        </div>
       </div>
-      <AnimatePresence>
-        {isAdvancedOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }}
-            transition={{ duration: 0.16 }}
-            className="mt-3 rounded-[10px] border border-white/10 bg-[#1f1f1f]/85 p-3"
-          >
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <div className="text-xs font-inter font-light text-white mb-1">Watermark X</div>
-                <input
-                  type="number"
-                  className="w-full bg-[#2C2C2C] rounded-[4.5px] text-xs font-inter font-light text-white px-2 py-1"
-                  value={watermarkOffsetX}
-                  onChange={(e) => setWatermarkOffsetX(Number(e.target.value) || 0)}
-                />
-              </div>
-              <div>
-                <div className="text-xs font-inter font-light text-white mb-1">Watermark Y</div>
-                <input
-                  type="number"
-                  className="w-full bg-[#2C2C2C] rounded-[4.5px] text-xs font-inter font-light text-white px-2 py-1"
-                  value={watermarkOffsetY}
-                  onChange={(e) => setWatermarkOffsetY(Number(e.target.value) || 0)}
-                />
-              </div>
-            </div>
-            <div className="mt-4 space-y-2">
-              <div className="flex justify-between items-center mb-2">
-                <div className="text-xs font-inter font-light text-white">Tilt X</div>
-                <RangeWithTooltip
-                  className={SLIDER_W}
-                  min={-50}
-                  max={50}
-                  origin={0}
-                  value={tiltX}
-                  onValueChange={setTiltX}
-                  dragging={draggingTiltX}
-                  setDragging={setDraggingTiltX}
-                  formatValue={(v) => `${v}°`}
-                />
-              </div>
-              <div className="flex justify-between items-center mb-2">
-                <div className="text-xs font-inter font-light text-white">Tilt Y</div>
-                <RangeWithTooltip
-                  className={SLIDER_W}
-                  min={-50}
-                  max={50}
-                  origin={0}
-                  value={tiltY}
-                  onValueChange={setTiltY}
-                  dragging={draggingTiltY}
-                  setDragging={setDraggingTiltY}
-                  formatValue={(v) => `${v}°`}
-                />
-              </div>
-              <div className="flex justify-between items-center mb-2">
-                <div className="text-xs font-inter font-light text-white">Rotation</div>
-                <RangeWithTooltip
-                  className={SLIDER_W}
-                  min={-50}
-                  max={50}
-                  origin={0}
-                  value={rotation}
-                  onValueChange={setRotation}
-                  dragging={draggingRotation}
-                  setDragging={setDraggingRotation}
-                  formatValue={(v) => `${v}°`}
-                />
-              </div>
-            </div>
-            <div className="flex gap-4 mt-4 pt-1">
-              <div className="flex items-center">
-                <span className="text-xs font-inter font-light text-white mr-2">X:</span>
-                <input
-                  type="number"
-                  className="bg-[#2C2C2C] rounded-[4.5px] text-xs font-inter font-light text-white px-2 py-1 w-16 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                  value={Math.round(Number(transform?.x) || 0)}
-                  onChange={(e) => {
-                    const nextX = Number(e.target.value);
-                    handleTransformChange({ x: Number.isFinite(nextX) ? nextX : 0, y: Number(transform?.y) || 0 });
-                  }}
-                />
-              </div>
-              <div className="flex items-center">
-                <span className="text-xs font-inter font-light text-white mr-2">Y:</span>
-                <input
-                  type="number"
-                  className="bg-[#2C2C2C] rounded-[4.5px] text-xs font-inter font-light text-white px-2 py-1 w-16 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                  value={Math.round(Number(transform?.y) || 0)}
-                  onChange={(e) => {
-                    const nextY = Number(e.target.value);
-                    handleTransformChange({ x: Number(transform?.x) || 0, y: Number.isFinite(nextY) ? nextY : 0 });
-                  }}
-                />
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <div className="flex justify-between items-center mt-3">
+        <div className="text-xs font-inter font-light text-white">Tilt X</div>
+        <RangeWithTooltip
+          className={SLIDER_W}
+          min={-50}
+          max={50}
+          origin={0}
+          value={tiltX}
+          onValueChange={setTiltX}
+          dragging={draggingTiltX}
+          setDragging={setDraggingTiltX}
+          formatValue={(v) => `${v}°`}
+        />
+      </div>
+      <div className="flex justify-between items-center mt-3">
+        <div className="text-xs font-inter font-light text-white">Tilt Y</div>
+        <RangeWithTooltip
+          className={SLIDER_W}
+          min={-50}
+          max={50}
+          origin={0}
+          value={tiltY}
+          onValueChange={setTiltY}
+          dragging={draggingTiltY}
+          setDragging={setDraggingTiltY}
+          formatValue={(v) => `${v}°`}
+        />
+      </div>
+      <div className="flex justify-between items-center mt-3">
+        <div className="text-xs font-inter font-light text-white">Rotation</div>
+        <RangeWithTooltip
+          className={SLIDER_W}
+          min={-50}
+          max={50}
+          origin={0}
+          value={rotation}
+          onValueChange={setRotation}
+          dragging={draggingRotation}
+          setDragging={setDraggingRotation}
+          formatValue={(v) => `${v}°`}
+        />
+      </div>
+      <div className="flex gap-4 mt-3">
+        <div className="flex items-center">
+          <span className="text-xs font-inter font-light text-white mr-2">X:</span>
+          <input
+            type="number"
+            className="bg-[#2C2C2C] rounded-[4.5px] text-xs font-inter font-light text-white px-2 py-1 w-16 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            value={Math.round(Number(transform?.x) || 0)}
+            onChange={(e) => {
+              const nextX = Number(e.target.value);
+              handleTransformChange({ x: Number.isFinite(nextX) ? nextX : 0, y: Number(transform?.y) || 0 });
+            }}
+          />
+        </div>
+        <div className="flex items-center">
+          <span className="text-xs font-inter font-light text-white mr-2">Y:</span>
+          <input
+            type="number"
+            className="bg-[#2C2C2C] rounded-[4.5px] text-xs font-inter font-light text-white px-2 py-1 w-16 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            value={Math.round(Number(transform?.y) || 0)}
+            onChange={(e) => {
+              const nextY = Number(e.target.value);
+              handleTransformChange({ x: Number(transform?.x) || 0, y: Number.isFinite(nextY) ? nextY : 0 });
+            }}
+          />
+        </div>
+      </div>
     </motion.div>
   )
 }
