@@ -24,6 +24,14 @@ export default function AnnotationBar() {
       className="absolute top-4 h-[44px] pl-[9px] pr-[4px] rounded-[100px] shadow-[inset_0_0_0_1px_#1b1f23,0_1px_4px_rgba(0,0,0,0.25)] flex items-center gap-[4px] select-none window-no-drag siteshot-chrome-panel z-30"
       style={{ left: annotationBarLeft }}
     >
+      {/* Title */}
+      <div className="px-[8px] text-xs font-inter font-light text-white/70">
+        Annotations
+      </div>
+      
+      {/* Separator */}
+      <div className="h-[24px] w-[1px] bg-white/10 mx-[2px]" />
+
       {/* Pen */}
       <Tooltip delayDuration={300}>
         <TooltipTrigger asChild>

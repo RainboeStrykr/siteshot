@@ -53,22 +53,20 @@ export default function PresetSelectorTopRight() {
           </SelectValue>
         </SelectTrigger>
         <SelectContent
-          className="min-w-[160px] rounded-[10px] border-white/10"
+          className="min-w-[160px] rounded-[10px] border border-white/10 bg-[#1c1c1c]"
           style={{
-            background: 'var(--editor-pill-bg)',
-            color: 'var(--app-fg)',
-            boxShadow: 'var(--editor-pill-shadow)',
+            boxShadow: '0 8px 30px rgba(0,0,0,0.5)',
           }}
         >
           <SelectItem
             value="default"
-            className="text-[13px] font-inter font-light focus:bg-white/10 cursor-pointer"
+            className="text-[13px] font-inter font-light text-white/80 focus:bg-white/10 focus:text-white cursor-pointer"
           >
             Default
           </SelectItem>
           <SelectItem
             value="current"
-            className="text-[13px] font-inter font-light focus:bg-white/10 cursor-pointer"
+            className="text-[13px] font-inter font-light text-white/80 focus:bg-white/10 focus:text-white cursor-pointer"
           >
             Current
           </SelectItem>
@@ -80,7 +78,7 @@ export default function PresetSelectorTopRight() {
                 <SelectItem
                   key={p.id}
                   value={p.id}
-                  className="text-[13px] font-inter font-light focus:bg-white/10 cursor-pointer"
+                  className="text-[13px] font-inter font-light text-white/80 focus:bg-white/10 focus:text-white cursor-pointer"
                 >
                   {p.name}
                 </SelectItem>
@@ -91,7 +89,7 @@ export default function PresetSelectorTopRight() {
           <SelectSeparator className="bg-white/10" />
           <SelectItem
             value="__save_new__"
-            className="text-[13px] font-inter font-light text-[#307b52] focus:bg-white/10 focus:text-[#256642] cursor-pointer"
+            className="text-[13px] font-inter font-light text-[#307b52] focus:bg-white/10 focus:text-[#3a9d63] cursor-pointer"
           >
             Save current as preset…
           </SelectItem>

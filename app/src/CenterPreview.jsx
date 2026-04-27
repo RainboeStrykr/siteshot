@@ -252,14 +252,14 @@ export default function CenterPreview() {
                 </div>
                 <div className="text-center space-y-1.5">
                   <p className="text-[18px] font-inter font-light text-white/90">Drop a screenshot here</p>
-                  <p className="text-[13px] font-inter font-light text-white/45">or click to browse — PNG, JPG, WebP, GIF supported</p>
+                  <p className="text-[13px] font-inter font-light text-white/45">or click to browse — PNG, JPG, WebP supported</p>
                 </div>
                   <motion.div
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
                   >
                     <Button
-                      className="siteshot-footer-btn bg-[#307b52] font-inter font-light text-white shadow-[0_12px_28px_rgba(48,123,82,0.35)] hover:bg-[#256642] pointer-events-none"
+                      className="h-[42px] px-5 rounded-[12px] bg-[#307b52] hover:bg-[#256642] text-sm font-inter font-light text-white shadow-[0_12px_28px_rgba(48,123,82,0.35)] pointer-events-none"
                       tabIndex={-1}
                     >
                       Upload screenshot
