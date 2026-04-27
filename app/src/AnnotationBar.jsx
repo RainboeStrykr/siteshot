@@ -159,7 +159,7 @@ export default function AnnotationBar() {
             </div>
           </button>
         </TooltipTrigger>
-        <TooltipContent side="bottom" sideOffset={6}>Circle label</TooltipContent>
+        <TooltipContent side="bottom" sideOffset={6}>Numbering</TooltipContent>
       </Tooltip>
 
       {/* Color picker — no tooltip needed, visually self-explanatory */}
