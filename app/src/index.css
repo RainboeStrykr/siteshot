@@ -191,3 +191,13 @@ input.annotation-color::-moz-color-swatch {
   border-radius: 9999px;
 }
 
+@theme inline {
+  @keyframes moveBackground {
+  from {
+    background-position: 0% 0%;
+    }
+  to {
+    background-position: 0% -1000%;
+    }
+  }
+}
