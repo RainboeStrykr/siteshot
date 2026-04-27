@@ -15,25 +15,6 @@ export const canvasAngleDegToCssAngleDeg = (angleDeg) => {
   return ((css % 360) + 360) % 360
 }
 
-export const blobCanvasBlendToCssBackgroundBlendMode = (config) => {
-  const cfg = config && typeof config === 'object' ? config : {}
-  const raw = String(cfg.blend || '').trim().toLowerCase()
-  if (raw === 'source-over' || raw === 'normal') return 'normal'
-  if (raw === 'lighter') return 'screen'
-  if (raw === 'lighten') return 'lighten'
-  if (raw === 'darken') return 'darken'
-  if (raw === 'multiply') return 'multiply'
-  if (raw === 'screen') return 'screen'
-  if (raw === 'overlay') return 'overlay'
-  if (raw === 'soft-light') return 'soft-light'
-  if (raw === 'hard-light') return 'hard-light'
-  if (raw === 'difference') return 'difference'
-  if (raw === 'exclusion') return 'exclusion'
-
-  const baseMode = String(cfg.baseMode || cfg.base || 'dark').toLowerCase()
-  return baseMode === 'light' ? 'multiply' : 'screen'
-}
-
 export const formatExportErrorMessage = (action, error) => {
   const msg = String(error?.message || error || '').trim()
   const isDesktopRuntime =
