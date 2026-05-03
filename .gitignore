@@ -13,9 +13,4 @@ landing-page/.env.local
 landing-page/.env.production.local
 landing-page/.vercel
 
-# Large media files
-landing-page/public/video/
-*.mp4
-*.mov
-*.avi
-*.mkv
+
