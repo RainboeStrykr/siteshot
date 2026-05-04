@@ -6,9 +6,7 @@
   "homepage": "./",
   "scripts": {
     "dev": "npm --prefix app run dev",
-    "build": "npm --prefix app run build",
-    "test": "node -e \"require('fs').mkdirSync('build-temp/vitest-tmp',{recursive:true})\" && cross-env TMPDIR=build-temp/vitest-tmp vitest run",
-    "test:watch": "node -e \"require('fs').mkdirSync('build-temp/vitest-tmp',{recursive:true})\" && cross-env TMPDIR=build-temp/vitest-tmp vitest"
+    "build": "npm --prefix app run build"
   },
   "dependencies": {
     "@theme-toggles/react": "^4.1.0",
@@ -25,18 +23,13 @@
     "region-screenshot-js": "^1.1.0"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.2",
     "@types/node": "25.0.10",
     "@types/react": "19.2.9",
     "autoprefixer": "^10.4.0",
     "concurrently": "^9.2.1",
-    "cross-env": "^7.0.3",
-    "jsdom": "^26.1.0",
     "postcss": "^8.4.5",
     "tailwindcss": "^3.0.7",
-    "typescript": "5.9.3",
-    "vitest": "^3.2.4"
+    "typescript": "5.9.3"
   },
   "overrides": {
     "minimatch": "^9.0.5"
