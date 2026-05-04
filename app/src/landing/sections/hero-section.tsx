@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Sparkles, ArrowRight } from 'lucide-react'
 import ShinyButton from '@/landing/ui/shiny-button'
+import { SparklesText } from '@/landing/ui/sparkles-text'
 
 export function HeroSection() {
   return (
@@ -19,9 +20,13 @@ export function HeroSection() {
         {/* Headline */}
         <h1 className="font-display text-5xl md:text-7xl font-bold tracking-tight mb-6">
           <span className="text-zinc-100 block">Screenshots,</span>
-          <span className="bg-gradient-to-r from-zinc-500 via-zinc-300 to-zinc-500 bg-clip-text text-transparent">
-            done better.
-          </span>
+          <SparklesText 
+            text="done better."
+            className="inline-block"
+            textClassName="bg-gradient-to-r from-zinc-500 via-zinc-300 to-zinc-500 bg-clip-text text-transparent"
+            colors={{ first: "#80ff00ff", second: "#ff5100ff" }}
+            sparklesCount={8}
+          />
         </h1>
 
         {/* Subheadline */}
