@@ -62,7 +62,7 @@ const firstColumn = testimonials.slice(0, 3)
 const secondColumn = testimonials.slice(3, 6)
 const thirdColumn = testimonials.slice(6, 9)
 
-const logos = ['TechCorp', 'Innovate', 'NextGen', 'Quantum', 'Velocity', 'Apex']
+const logos = ['Google', 'Tesla', 'Infosys', 'IBM', 'Zomato', 'Zerodha', 'Oyo']
 
 export function TestimonialsSection() {
   return (
@@ -92,7 +92,7 @@ export function TestimonialsSection() {
         </div>
 
         <div className="mt-16 pt-16 border-t border-zinc-800/50">
-          <p className="text-center text-sm text-zinc-500 mb-8">Trusted by industry leaders</p>
+          <p className="text-center text-sm text-zinc-500 mb-8">Trusted by people working in</p>
           <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_20%,black_80%,transparent)]">
             <motion.div
               className="flex gap-12 md:gap-16"
