@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="app/public/media/transparent-icon-large.png" width="120" alt="Siteshot Logo" />
+  <img src="app/public/media/transparent-icon.png" width="120" alt="Siteshot Logo" />
 </p>
 
 <h1 align="center">Siteshot</h1>
