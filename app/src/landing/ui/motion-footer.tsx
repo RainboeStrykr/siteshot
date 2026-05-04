@@ -3,6 +3,14 @@ import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { cn } from '@/landing/lib/utils'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
@@ -264,13 +272,59 @@ export function CinematicFooter() {
               </div>
 
               <div className="flex flex-wrap justify-center gap-3 md:gap-6 w-full mt-2">
-                <MagneticButton as="a" href="#" className="footer-glass-pill px-6 py-3 rounded-full text-zinc-400 font-medium text-xs md:text-sm hover:text-zinc-100">
-                  Privacy Policy
-                </MagneticButton>
-                <MagneticButton as="a" href="#" className="footer-glass-pill px-6 py-3 rounded-full text-zinc-400 font-medium text-xs md:text-sm hover:text-zinc-100">
-                  Terms of Service
-                </MagneticButton>
-                <MagneticButton as="a" href="#" className="footer-glass-pill px-6 py-3 rounded-full text-zinc-400 font-medium text-xs md:text-sm hover:text-zinc-100">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <MagneticButton className="footer-glass-pill px-6 py-3 rounded-full text-zinc-400 font-medium text-xs md:text-sm hover:text-zinc-100">
+                      Privacy Policy
+                    </MagneticButton>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-2xl bg-zinc-950 border-zinc-800 text-zinc-300 max-h-[80vh] overflow-y-auto">
+                    <DialogHeader>
+                      <DialogTitle className="text-zinc-100 text-xl">Privacy Policy</DialogTitle>
+                      <DialogDescription className="text-zinc-500">
+                        Last updated: {new Date().toLocaleDateString()}
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="space-y-4 text-sm mt-4">
+                      <p>At Siteshot, your privacy is our priority. Since our application operates entirely within your browser (local-first), we do not collect, store, or transmit your screenshots or images to any external servers.</p>
+                      <h3 className="text-zinc-100 font-medium text-base">1. Information We Do Not Collect</h3>
+                      <p>We do not collect any personal data, images, or files you process through Siteshot. All image rendering and processing are handled via your device's resources.</p>
+                      <h3 className="text-zinc-100 font-medium text-base">2. Analytics</h3>
+                      <p>We may use basic, anonymised analytics to understand how our tool is being used (e.g., page views) to help us improve the platform, but this does not include any user-identifiable data or processed content.</p>
+                      <h3 className="text-zinc-100 font-medium text-base">3. Third-Party Services</h3>
+                      <p>If you use external background images fetched from third-party APIs (like Unsplash), those requests are subject to the respective privacy policies of those services.</p>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <MagneticButton className="footer-glass-pill px-6 py-3 rounded-full text-zinc-400 font-medium text-xs md:text-sm hover:text-zinc-100">
+                      Terms of Service
+                    </MagneticButton>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-2xl bg-zinc-950 border-zinc-800 text-zinc-300 max-h-[80vh] overflow-y-auto">
+                    <DialogHeader>
+                      <DialogTitle className="text-zinc-100 text-xl">Terms of Service</DialogTitle>
+                      <DialogDescription className="text-zinc-500">
+                        Last updated: {new Date().toLocaleDateString()}
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="space-y-4 text-sm mt-4">
+                      <p>By using Siteshot, you agree to these Terms of Service. Please read them carefully.</p>
+                      <h3 className="text-zinc-100 font-medium text-base">1. Use of the Service</h3>
+                      <p>Siteshot provides a browser-based tool for formatting and enhancing screenshots. You may use this service for personal and commercial purposes.</p>
+                      <h3 className="text-zinc-100 font-medium text-base">2. User Content</h3>
+                      <p>You retain all rights to the images you process using Siteshot. Because the service is local-first, we have no access to or control over your content.</p>
+                      <h3 className="text-zinc-100 font-medium text-base">3. Prohibited Conduct</h3>
+                      <p>You agree not to use Siteshot to create or distribute illegal, harmful, or copyright-infringing material. You are solely responsible for the content you generate.</p>
+                      <h3 className="text-zinc-100 font-medium text-base">4. Disclaimer of Warranties</h3>
+                      <p>Siteshot is provided "as is" without any warranties, express or implied. We do not guarantee that the service will be error-free or uninterrupted.</p>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+
+                <MagneticButton as="a" href="mailto:abhirajbhowmick27@gmail.com" className="footer-glass-pill px-6 py-3 rounded-full text-zinc-400 font-medium text-xs md:text-sm hover:text-zinc-100">
                   Support
                 </MagneticButton>
               </div>
