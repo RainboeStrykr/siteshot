@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cal+Sans&family=Instrument+Sans:wght@400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -15,6 +16,7 @@
     --chip-border: rgba(255,255,255,0.10);
     --modal-bg: rgba(20,22,28,0.95);
 
+    /* Shadcn/Radix HSL tokens (used by editor components) */
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
@@ -69,6 +71,30 @@
   }
 }
 
+/* Landing page uses these CSS vars as actual color values (not HSL triplets).
+   We override them inside the landing page's <main> element which has bg-zinc-950. */
+.landing-root {
+  --background: #09090b;
+  --foreground: #f2f2f5;
+  --card: #111113;
+  --card-foreground: #f2f2f5;
+  --popover: #111113;
+  --popover-foreground: #f2f2f5;
+  --primary: #f2f2f5;
+  --primary-foreground: #09090b;
+  --secondary: #1c1c1e;
+  --secondary-foreground: #f2f2f5;
+  --muted: #1c1c1e;
+  --muted-foreground: #71717a;
+  --accent: #1c1c1e;
+  --accent-foreground: #f2f2f5;
+  --destructive: #ef4444;
+  --destructive-foreground: #f2f2f5;
+  --border: #27272a;
+  --input: #27272a;
+  --ring: #71717a;
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -84,13 +110,9 @@ body,
 #root {
   height: 100%;
   background: transparent;
-  overflow: hidden;
 }
 
-/* macOS window corners: the native window has rounded corners but the webview
-   content area is a rectangle.  Clip the html element to match the native
-   radius so we never paint outside the rounded frame (avoids "unfilled corner"
-   artefacts on macOS Liquid Glass and similar compositing). */
+/* macOS window corners */
 html {
   overflow: hidden;
 }
@@ -200,4 +222,30 @@ input.annotation-color::-moz-color-swatch {
     background-position: 0% -1000%;
     }
   }
+}
+
+/* ── Landing page font utilities ─────────────────────────────────────────── */
+.font-display {
+  font-family: "Cal Sans", "Manrope", system-ui, sans-serif;
+}
+
+.font-heading {
+  font-family: "Instrument Sans", "Manrope", system-ui, sans-serif;
+}
+
+/* Landing page: allow scrolling, remove user-select restriction */
+.landing-root {
+  overflow-y: auto !important;
+  -webkit-user-select: auto !important;
+  user-select: auto !important;
+}
+
+/* Hide scrollbar on landing page */
+.landing-root::-webkit-scrollbar,
+.landing-root {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.landing-root::-webkit-scrollbar {
+  display: none;
 }

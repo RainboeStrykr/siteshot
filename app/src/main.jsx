@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import App from './App.jsx'
+import LandingPage from './landing/LandingPage'
 import './index.css'
 
 function installBootDiagnostics({ label }) {
@@ -66,7 +68,6 @@ function installBootDiagnostics({ label }) {
 }
 
 // Best-effort: install the Tauri API bridge before React mounts.
-// This also enables buffering of early events like screenshot insertion.
 if (typeof window !== 'undefined') {
   try {
     const root = document?.documentElement;
@@ -85,7 +86,12 @@ if (typeof window !== 'undefined') {
 try {
   ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-      <App />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/editor" element={<App />} />
+        </Routes>
+      </BrowserRouter>
     </React.StrictMode>
   )
 } catch (err) {

@@ -5,12 +5,8 @@ import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // Treat .js files as JSX so shared components using JSX syntax work without renaming.
-  esbuild: {
-    loader: 'jsx',
-    jsx: 'automatic',
-    include: /\.[jt]sx?$/,
-  },
+  // Only apply jsx loader override via optimizeDeps for plain .js files.
+  // .tsx files are handled natively by @vitejs/plugin-react (TypeScript + JSX).
   optimizeDeps: {
     esbuildOptions: {
       loader: {
@@ -39,6 +35,7 @@ export default defineConfig({
     },
   },
   server: {
+    cors: true,
     fs: {
       allow: [path.resolve(__dirname, '.')],
     },

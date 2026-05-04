@@ -7,6 +7,10 @@
     {
       "source": "/api/s3-img/:path*",
       "destination": "/api/s3-img-proxy"
+    },
+    {
+      "source": "/((?!api/).*)",
+      "destination": "/index.html"
     }
   ]
 }
