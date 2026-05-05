@@ -1,9 +1,23 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import App from './App.jsx'
 import LandingPage from './landing/LandingPage'
 import './index.css'
+import posthog from 'posthog-js'
+
+posthog.init(import.meta.env.VITE_PUBLIC_POSTHOG_KEY, {
+  api_host: import.meta.env.VITE_PUBLIC_POSTHOG_HOST,
+  person_profiles: 'identified_only',
+})
+
+function PostHogPageView() {
+  const location = useLocation()
+  React.useEffect(() => {
+    posthog.capture('$pageview')
+  }, [location])
+  return null
+}
 
 function installBootDiagnostics({ label }) {
   if (typeof window === 'undefined' || typeof document === 'undefined') return;
@@ -87,6 +101,7 @@ try {
   ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
       <BrowserRouter>
+        <PostHogPageView />
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/editor" element={<App />} />
