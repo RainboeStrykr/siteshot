@@ -26,17 +26,20 @@
 
 ## 📸 About Siteshot
 
-Siteshot is a powerful, local-first web application designed to help developers, designers, and creators elevate their screenshots. Instead of sharing raw, boring screen captures, Siteshot allows you to add beautiful backgrounds, realistic drop shadows, rounded corners, and macOS-style window controls to your images instantly.
+Most screenshots aren’t meant to be shared; they’re messy, inconsistent, and hard to present. SiteShot fixes that.
 
-No logins required. No cloud storage limits. Everything happens right in your browser.
+Instead of just capturing screens, SiteShot lets you transform them into polished visuals in seconds. We started with a simple website screenshot tool. But the real problem wasn’t capturing screens; it was making them presentable. So we rebuilt everything around that.
+
+Siteshot is a powerful web application designed to help developers, designers, and creators elevate their screenshots. Instead of sharing raw, boring screen captures, Siteshot lets you instantly add beautiful backgrounds, realistic drop shadows, rounded corners, and macOS-style window controls to your images.
+
 
 ## ✨ Features
 
 - 🎨 **Beautiful Backgrounds**: Choose from solid colors, smooth gradients, or upload your own background image.
 - 📐 **Granular Control**: Adjust padding, inset radius, image scaling, and alignment to get the perfect crop.
-- 💡 **Dynamic Shadows & Glows**: Add highly configurable drop shadows and ambient glows that adapt to your image's colors.
+- 💡 **Dynamic Shadows & Glows**: Add highly configurable drop shadows and ambient glows that adapt to your image's colours.
 - 📱 **Presentation Ready**: Instantly make any standard screenshot look like a professional mockup.
-- ⚡ **Local & Fast**: Built as a Single Page Application. Processing happens on your device.
+- ⚡ **Local & Fast**: No logins required. No cloud storage limits. Everything happens right in your browser.
 - 🎬 **Cinematic Landing Page**: Features a stunning, GSAP-powered landing page with scroll animations and dynamic elements.
 
 ## 🛠 Tech Stack
