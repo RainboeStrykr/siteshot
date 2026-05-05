@@ -56,7 +56,7 @@ export function HeroSection() {
         <div className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-6">
           {/* Product Hunt badge */}
           <a
-            href="https://www.producthunt.com/products/cleanshot-2?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-cleanshot-2"
+            href="https://www.producthunt.com/products/siteshot?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-siteshot"
             target="_blank"
             rel="noopener noreferrer"
           >
