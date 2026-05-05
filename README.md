@@ -32,7 +32,6 @@ Instead of just capturing screens, SiteShot lets you transform them into polishe
 
 Siteshot is a powerful web application designed to help developers, designers, and creators elevate their screenshots. Instead of sharing raw, boring screen captures, Siteshot lets you instantly add beautiful backgrounds, realistic drop shadows, rounded corners, and macOS-style window controls to your images.
 
-
 ## ✨ Features
 
 - 🎨 **Beautiful Backgrounds**: Choose from solid colors, smooth gradients, or upload your own background image.
@@ -103,6 +102,11 @@ Contributions are always welcome! If you have ideas for new features, background
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
+
+## 💻 Demo
+
+![landing-page](app/public/media/landing-page-mockup.png)
+![editor](app/public/media/editor-mockup.png)
 
 ---
 
