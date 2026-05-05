@@ -81,7 +81,7 @@ export function TestimonialsSection() {
             What our users say
           </h2>
           <p className="text-center mt-4 text-zinc-500 text-lg text-balance">
-            See what our customers have to say about us.
+            See what people have said about Siteshot v1.
           </p>
         </motion.div>
 
@@ -92,7 +92,7 @@ export function TestimonialsSection() {
         </div>
 
         <div className="mt-16 pt-16 border-t border-zinc-800/50">
-          <p className="text-center text-sm text-zinc-500 mb-8">Trusted by people working in</p>
+          <p className="text-center text-sm text-zinc-500 mb-8">Helping people create beautiful screenshots at</p>
           <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_20%,black_80%,transparent)]">
             <motion.div
               className="flex gap-12 md:gap-16"
